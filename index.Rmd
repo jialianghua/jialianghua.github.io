@@ -4,9 +4,15 @@ output:
   html_document:
     toc: true
     toc_float: true
-    theme: cerulean
 ---
 
-# This is Jeff's awesome website
+# Welcome to Jialiang's website!
 
-![](https://media.giphy.com/media/drXGoW1iudhKw/giphy.gif)
+![](images/giphy.gif)
+
+# About me
+
+- I am a Biostatistician at [Mental Health Data Science](https://www.columbiapsychiatry.org/research/research-areas/mental-health-data-science), Columbia University Department of Psychiatry and New York State Psychiatric Institute
+- I am a [Columbia University](https://www.columbia.edu) alum (MS in Biostatistics)
+- I currently live in New York City.
+- I like music, guitar and photography

@@ -5,6 +5,8 @@ navbar:
   right:
     - text: "About"
       href: about.html
+    - text: "Neuroscience"
+      href: neuroscience.html
     - icon: fa-envelope fa-lg
       href: mailto:<dwjialiang@gmail.com>
     - icon: fa-github fa-lg

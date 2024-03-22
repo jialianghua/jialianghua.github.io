@@ -14,3 +14,8 @@ output:
 - I am a [Columbia University](https://www.columbia.edu) alum (MS in Biostatistics)
 - I currently live in New York City.
 - I like music, guitar and photography
+
+# Link to pages within the site
+
+- [Resume](resume.html)
+- [About](about.html)

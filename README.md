@@ -1,2 +1,2 @@
-# jialianghua.github.io
-My personal website
+# Jialiang's personal website
+address: jialianghua.github.io

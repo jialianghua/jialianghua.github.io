@@ -1,0 +1,23 @@
+---
+title: "Mindfulness"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+# Resources
+## Courses
+- MasterClass: [Jon Kabat-Zinn Teaches Mindfulness and Meditation](https://www.masterclass.com/classes/jon-kabat-zinn-teaches-mindfulness-and-meditation)
+- [Course](https://www.bilibili.com/video/BV19y4y1V7RU?p=8&spm_id_from=pageDriver&vd_source=ff576ca272bc04d6aa7b61ccc010e0c5)
+
+## Books
+- [The Mindful Path to Self-Compassion: Freeing Yourself from Destructive Thoughts and Emotions](https://www.amazon.com/Mindful-Path-Self-Compassion-Yourself-Destructive/dp/1593859759)
+
+## Apps
+- [Insight Timer](https://apps.apple.com/us/app/insight-timer-meditate-sleep/id337472899)
+- For chronic pain patients: 
+  - [Curable](https://apps.apple.com/us/app/curable/id1325784379)
+  - [TMS Wiki](https://www.tmswiki.org)
+  - [My TMS Journey](https://mytmsjourney.com)
+    - [Recovery Roadmap](https://mytmsjourney.com/recovery-journey-roadmap/)

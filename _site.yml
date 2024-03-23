@@ -5,8 +5,12 @@ navbar:
   right:
     - text: "About"
       href: about.html
-    - text: "Neuroscience"
-      href: neuroscience.html
+    - text: Neuroscience
+      menu:
+        - text: My Research and Work
+          href: neuroscience.html
+        - text: Mindfulness
+          href: mindfulness.html
     - icon: fa-envelope fa-lg
       href: mailto:<dwjialiang@gmail.com>
     - icon: fa-github fa-lg

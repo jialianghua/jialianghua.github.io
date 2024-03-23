@@ -1,5 +1,5 @@
 ---
-title: "About"
+title: "Neuroscience"
 output: 
   html_document:
     toc: true
@@ -8,4 +8,5 @@ output:
 
 # My neuroscience research and work
 
-balabala
+![](images/healing_plot.jpg)
+

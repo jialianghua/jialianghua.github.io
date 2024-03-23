@@ -1,0 +1,16 @@
+---
+title: "Data Science Resources"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+# My Favorite Tools
+
+- [Google](www.google.com)
+
+
+# Github
+
+- [Learning to use Github](https://p8105.com/git.html)

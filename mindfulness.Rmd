@@ -14,7 +14,7 @@ output:
 ## Books
 - [The Mindful Path to Self-Compassion: Freeing Yourself from Destructive Thoughts and Emotions](https://www.amazon.com/Mindful-Path-Self-Compassion-Yourself-Destructive/dp/1593859759)
 
-## Apps
+## Websites and Apps
 - [Insight Timer](https://apps.apple.com/us/app/insight-timer-meditate-sleep/id337472899)
 - For chronic pain patients: 
   - [Curable](https://apps.apple.com/us/app/curable/id1325784379)

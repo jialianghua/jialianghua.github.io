@@ -6,11 +6,12 @@ output:
     toc_float: true
 ---
 
-# My Favorite Tools
+## My Favorite Tools
 
-- [Google](www.google.com)
+- [Google](https://www.google.com)
 
 
-# Github
+## Github
 
 - [Learning to use Github](https://p8105.com/git.html)
+- [Github Education](https://education.github.com)

@@ -19,6 +19,8 @@ navbar:
       href: mailto:<dwjialiang@gmail.com>
     - icon: fa-github fa-lg
       href: https://github.com/jialianghua/
+    - icon: fa-solid fa-circle-user fa-lg
+      href: admin.html
 output:
   html_document:
     theme: flatly

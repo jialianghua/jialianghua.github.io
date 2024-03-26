@@ -2,3 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
+admin.Rmd
+generate_admin.Rmd
+generate_admin.html

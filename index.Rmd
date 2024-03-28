@@ -1,21 +1,23 @@
 ---
-title: "Welcome to Jialiang's website!"
+title: "Welcome to Jialiang Hua's website!"
 output: 
   html_document:
     toc: true
     toc_float: true
 ---
 
-![](images/giphy.gif)
+<img src="images/JialiangHua.jpg" style="width:35%">
+
+* * *
 
 # About me
 
-- I am a Biostatistician at [Mental Health Data Science](https://www.columbiapsychiatry.org/research/research-areas/mental-health-data-science), Columbia University Department of Psychiatry and New York State Psychiatric Institute
+- I am Jialiang Hua. I am a Biostatistician at [Mental Health Data Science](https://www.columbiapsychiatry.org/research/research-areas/mental-health-data-science), Columbia University Department of Psychiatry and New York State Psychiatric Institute
 - I am a [Columbia University](https://www.columbia.edu) alum (MS in Biostatistics)
-- I currently live in New York City.
-- I like music, guitar and photography
+- I currently live in New Jersey.
+- I like music, guitar and photography.
 
-# Link to pages within the site
+# Links to pages within the site
 
-- [Resume](resume.html)
+- [Resume](library/Resume_JialiangHua_202305_2.pdf)
 - [About](about.html)

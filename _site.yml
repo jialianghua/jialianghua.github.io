@@ -15,6 +15,8 @@ navbar:
           href: neuroscience.html
         - text: Mindfulness
           href: mindfulness.html
+        - text: Chronic Pain
+          href: chronic_pain.html
     - icon: fa-envelope fa-lg
       href: mailto:<dwjialiang@gmail.com>
     - icon: fa-github fa-lg

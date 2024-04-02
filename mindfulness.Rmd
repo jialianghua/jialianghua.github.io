@@ -6,6 +6,8 @@ output:
     toc_float: true
 ---
 
+[How to Practice Radical Acceptance](z_how_to_practice_radical_acceptance.html)
+
 # Resources
 ## Courses
 - MasterClass: [Jon Kabat-Zinn Teaches Mindfulness and Meditation](https://www.masterclass.com/classes/jon-kabat-zinn-teaches-mindfulness-and-meditation)

@@ -1,0 +1,74 @@
+---
+title: "How to Practice Radical Acceptance"
+author: Discover how to use radical acceptance to improve your mental health.
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+source: <https://www.psychologytoday.com/gb/blog/click-here-for-happiness/202301/how-to-practice-radical-acceptance>
+
+## Key Points
+
+-   Radical acceptance is accepting what is not under our control and embracing what is happening now.
+
+-   When we wholeheartedly and radically accept emotional or physical pain, it can reduce suffering.
+
+-   Radical acceptance is used to discourage clients from having reactive behaviors.
+
+## Cowritten by Zamfira Parincu and Tchiki Davis.
+
+There is a famous saying that “Pain is inevitable; suffering is optional.” It suggests that pain is an inevitable part of life; suffering, however, arises from not accepting the pain.
+
+What makes this quote helpful is that it not only discerns between pain and suffering—two concepts we often use interchangeably—but it also recognizes that we have power in the face of challenges. We have the power to accept.
+
+Radical acceptance is accepting what is not under your control and embracing what is happening now in a nonjudgmental way. When you wholeheartedly and radically accept emotional or physical pain, it can reduce suffering.
+
+Marsha Linehan, a leading psychologist who introduced the idea of radical [acceptance](https://www.berkeleywellbeing.com/acceptance.html) into Western societies, sums it up:
+
+> Radical acceptance rests on letting go of the illusion of control and a willingness to notice and accept things as they are right now, without judging. [It is a] complete and total openness to the facts of reality as they are, without throwing a tantrum and growing angry (2021; p. 503).
+
+Therapies that include radical acceptance are designed to stop the clients from having reactive behaviors and encourage them to respond to challenging situations skillfully. For example, it has been shown that these therapies can reduce substance use and relapse (Bowen et al., 2012), anxiety (Roemer et al., 2008), suicidality (DeCou et al., 2019), and chronic pain (Hann & McCracken, 2014). However, radical acceptance can be learned and practiced outside of therapy. In fact, this strategy can help people accept themselves wholeheartedly, increase their well-being (Kotsu et al., 2018), and have positive weight-loss benefits (Lillis et al., 2016). <https://youtu.be/8gJta4vc61I>
+
+## How to Practice Radical Acceptance
+
+Here, you can learn more about steps you can take to develop radical acceptance skills (Taitz, 2021).
+
+1.  **Acknowledge the present.** The most important part is to be mindful of your situation, paying attention to it in a non-judgmental way. However, this does not mean you should accept abusive or manipulative behavior; it just means accepting the reality, whether you like it or not.
+
+2.  **Ask yourself if you can control or change the situation.** If you can’t control what happens, why are you getting angry? It can be painful to acknowledge that you’re not always in control, but it can also be freeing.
+
+3.  **Let go of judgment.** Practicing radical acceptance means letting go of judgment and experiencing things as they actually are. You can improve this mindfulness skill by practicing meditation and being present in the moment.
+
+4.  **Let the past be in the past.** Remind yourself that the past cannot be changed. The past, no matter if good or bad, happened.
+
+5.  **Breathe.** This may sound simple, but it can be extremely effective. Whenever you are fighting reality, your body may get tense in parts such as the shoulders, face, or stomach. So take deep breaths for a few moments and focus on them. When you practice watching your breath, you may ground yourself in the present moment and become more relaxed.
+
+6.  **Be patient.** Choose to practice radical acceptance on a daily basis and understand that it takes time to master it.
+
+7.  **Practice.** Practice accepting situations so that when bigger challenges come along, you’ll have already developed these skills.
+
+Radical acceptance can be a useful skill for improving personal well-being and interpersonal relationships. Hopefully, the information provided here gives you some ideas for how to practice it in your life.
+
+A version of this post also appears on [The Berkeley Well-Being Institute's Web site](https://www.berkeleywellbeing.com/radical-acceptance.html).
+
+<br>
+
+## References
+
+```         
+DeCou, C. R., Comtois, K. A., & Landes, S. J. (2019). Dialectical behavior therapy is effective for the treatment of suicidal behavior: A meta-analysis. Behavior therapy, 50(1), 60–72.
+
+Hann, K. E., & McCracken, L. M. (2014). A systematic review of randomized controlled trials of Acceptance and Commitment Therapy for adults with chronic pain: Outcome domains, design quality, and efficacy. Journal of contextual behavioral science, 3(4), 217–227.
+
+Kotsou, I., Leys, C., & Fossion, P. (2018). Acceptance alone is a better predictor of psychopathology and well-being than emotional competence, emotion regulation and mindfulness. Journal of affective disorders, 226, 142–145.
+
+Lillis, J., Niemeier, H. M., Thomas, J. G., Unick, J., Ross, K. M., Leahey, T. M., ... & Wing, R. R. (2016). A randomized trial of an acceptance-based behavioral intervention for weight loss in people with high internal disinhibition. Obesity, 24(12), 2509–2514.
+
+Linehan, M. (2021). Building a life worth living: A memoir. Random House Trade Paperbacks
+
+Roemer, L., Orsillo, S. M., & Salters-Pedneault, K. (2008). Efficacy of an acceptance-based behavior therapy for generalized anxiety disorder: evaluation in a randomized controlled trial. Journal of consulting and clinical psychology, 76(6), 1083.
+
+Taitz, J. (2021). Radical Acceptance Can Keep Emotional Pain From Turning Into Suffering. The New York Times.
+```

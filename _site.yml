@@ -27,5 +27,5 @@ navbar:
       href: admin.html
 output:
   html_document:
-    theme: flatly
+    theme: cosmo
     css: styles.css

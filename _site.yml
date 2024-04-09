@@ -5,6 +5,8 @@ navbar:
   right:
     - text: "About"
       href: about.html
+    - text: Research
+      href: research.html
     - text: Data Science
       menu:
         - text: Resources

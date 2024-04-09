@@ -1,0 +1,10 @@
+---
+title: "Research"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+1. **Identifying Important Risk Factors for Future Mania in Individuals with Major Depressive Disorder Using Weighted Random Forest Models and the NESARC Dataset**  
+This is the capstone project for my master's degree. You can find my [presentation slides](library/practicum project/mwPracticum_JialiangHua_final2.pptx) here and the [report](library/practicum project/Practicum Report_JialiangHua.pdf) here.

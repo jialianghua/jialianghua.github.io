@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Understanding weights options “proportional” and “outer” in EMMeans</title>
+
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Home</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="research.html">Research</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Data Science
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="ds_resources.html">Resources</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Neuroscience
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="neuroscience.html">My Research and Work</a>
+    </li>
+    <li>
+      <a href="mindfulness.html">Mindfulness</a>
+    </li>
+    <li>
+      <a href="chronic_pain.html">Chronic Pain</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="mailto:&lt;dwjialiang@gmail.com&gt;">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/jialianghua/">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="admin.html">
+    <span class="fa fa-solid fa-circle-user fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Understanding weights options
+“proportional” and “outer” in EMMeans</h1>
+
+</div>
+
+
+<div id="pigs-data" class="section level2">
+<h2>Pigs data</h2>
+<pre class="r"><code>data(pigs)
+set.seed(123)
+bound &lt;- mean(pigs$conc)
+
+pigs_df &lt;- pigs %&gt;%
+  mutate(
+    dich = factor(case_when(
+      conc &lt;= bound ~ &quot;Low&quot;,
+      TRUE ~ &quot;High&quot;), 
+      levels = c(&quot;Low&quot;, &quot;High&quot;)
+    ),
+    source = factor(case_when(
+      source == &quot;skim&quot; ~ &quot;skim&quot;,
+      TRUE ~ &quot;non-skim&quot;)
+    ),
+    source_num = as.numeric(source == &quot;non-skim&quot;),
+    noise = rnorm(n(), mean = 0, sd = 1),
+    x = 1 * source_num + 0.5 * conc + noise
+  ) %&gt;% 
+  select(source, x, percent, conc, dich)
+
+saveRDS(pigs_df, file = &quot;data/pigs_modified.rds&quot;)
+write_csv(pigs_df, &quot;data/pigs_modified.csv&quot;)
+
+# data &lt;- readRDS(file = &quot;pigs_modified.rds&quot;)
+# write_csv(pigs, &quot;pigs.csv&quot;)</code></pre>
+</div>
+<div id="unadjusted-mean" class="section level2">
+<h2>Unadjusted mean</h2>
+<pre class="r"><code>## Let emmeans output more digits
+emm_options(opt.digits = FALSE)
+
+## Our test data
+pigs_df</code></pre>
+<pre><code>##      source        x percent conc dich
+## 1  non-skim 14.33952       9 27.8  Low
+## 2  non-skim 12.61982       9 23.7  Low
+## 3  non-skim 18.30871      12 31.5  Low
+## 4  non-skim 15.32051      12 28.5  Low
+## 5  non-skim 17.52929      12 32.8  Low
+## 6  non-skim 19.71506      15 34.0  Low
+## 7  non-skim 15.61092      15 28.3  Low
+## 8  non-skim 15.03494      18 30.6  Low
+## 9  non-skim 16.66315      18 32.7  Low
+## 10 non-skim 17.40434      18 33.7  Low
+## 11 non-skim 21.87408       9 39.3 High
+## 12 non-skim 18.75981       9 34.8  Low
+## 13 non-skim 16.30077       9 29.8  Low
+## 14 non-skim 21.01068      12 39.8 High
+## 15 non-skim 20.44416      12 40.0 High
+## 16 non-skim 22.33691      12 39.1 High
+## 17 non-skim 20.74785      15 38.5 High
+## 18 non-skim 18.63338      15 39.2 High
+## 19 non-skim 21.70136      15 40.0 High
+## 20 non-skim 21.97721      18 42.9 High
+## 21     skim 19.23218       9 40.6 High
+## 22     skim 15.28203       9 31.0  Low
+## 23     skim 16.27400       9 34.6  Low
+## 24     skim 20.72111      12 42.9 High
+## 25     skim 24.42496      12 50.1 High
+## 26     skim 17.01331      12 37.4 High
+## 27     skim 30.58779      15 59.5 High
+## 28     skim 20.85337      15 41.4 High
+## 29     skim 28.76186      18 59.8 High</code></pre>
+<pre class="r"><code>mod_unadjusted &lt;- lm(conc ~ source, data = pigs_df)
+summary(mod_unadjusted)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = conc ~ source, data = pigs_df)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -13.144  -4.550  -1.244   4.950  15.656 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   34.350      1.597  21.505  &lt; 2e-16 ***
+## sourceskim     9.794      2.867   3.416  0.00203 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 7.143 on 27 degrees of freedom
+## Multiple R-squared:  0.3018, Adjusted R-squared:  0.2759 
+## F-statistic: 11.67 on 1 and 27 DF,  p-value: 0.002026</code></pre>
+<pre class="r"><code>emmeans(mod_unadjusted, &quot;source&quot;, infer = TRUE, null = 0)</code></pre>
+<pre><code>##  source     emmean       SE df lower.CL upper.CL t.ratio p.value
+##  non-skim 34.35000 1.597296 27 31.07262 37.62738  21.505  &lt;.0001
+##  skim     44.14444 2.381109 27 39.25881 49.03008  18.539  &lt;.0001
+## 
+## Confidence level used: 0.95</code></pre>
+<div id="calculate-by-ourselves" class="section level3">
+<h3>Calculate by ourselves</h3>
+<p><span class="math display">\[y = 34.35 + 9.794 * source_{skim} +
+\varepsilon\]</span></p>
+<pre class="r"><code>## EMM for source non-skim
+34.35</code></pre>
+<pre><code>## [1] 34.35</code></pre>
+<pre class="r"><code>## EMM for source skim
+34.35 + 9.794</code></pre>
+<pre><code>## [1] 44.144</code></pre>
+<pre class="r"><code># Raw marginal means of the data
+with(pigs_df, tapply(conc, source, mean))</code></pre>
+<pre><code>## non-skim     skim 
+## 34.35000 44.14444</code></pre>
+<p>The unadjusted mean, is just the raw marginal mean.</p>
+</div>
+</div>
+<div id="adjusted-mean" class="section level2">
+<h2>Adjusted mean</h2>
+<pre class="r"><code>mod_1 &lt;- lm(conc ~ source + x + factor(percent) + dich, data = pigs_df)
+summary(mod_1)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = conc ~ source + x + factor(percent) + dich, data = pigs_df)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.5104 -0.5047 -0.1543  0.7537  3.5890 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)        3.72477    1.59366   2.337  0.02893 *  
+## sourceskim         4.16331    0.62495   6.662 1.07e-06 ***
+## x                  1.59508    0.09992  15.963 1.40e-13 ***
+## factor(percent)12  0.01478    0.72112   0.020  0.98383    
+## factor(percent)15 -0.07722    0.80297  -0.096  0.92425    
+## factor(percent)18  2.63490    0.84219   3.129  0.00489 ** 
+## dichHigh           2.24182    0.76683   2.923  0.00787 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.369 on 22 degrees of freedom
+## Multiple R-squared:  0.9791, Adjusted R-squared:  0.9734 
+## F-statistic: 171.7 on 6 and 22 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>EMM_equal &lt;- emmeans(mod_1, &quot;source&quot;, weights = &quot;equal&quot;, infer = TRUE, null = 0)
+EMM_equal</code></pre>
+<pre><code>##  source     emmean        SE df lower.CL upper.CL t.ratio p.value
+##  non-skim 36.26182 0.3183825 22 35.60153 36.92210 113.894  &lt;.0001
+##  skim     40.42513 0.5131306 22 39.36096 41.48929  78.781  &lt;.0001
+## 
+## Results are averaged over the levels of: percent, dich 
+## Confidence level used: 0.95</code></pre>
+<pre class="r"><code>contrast(EMM_equal, method = &quot;revpairwise&quot;, infer = TRUE)</code></pre>
+<pre><code>##  contrast          estimate        SE df lower.CL upper.CL t.ratio p.value
+##  skim - (non-skim)  4.16331 0.6249491 22 2.867245 5.459375   6.662  &lt;.0001
+## 
+## Results are averaged over the levels of: percent, dich 
+## Confidence level used: 0.95</code></pre>
+<pre class="r"><code>EMM_flat &lt;- emmeans(mod_1, &quot;source&quot;, weights = &quot;flat&quot;, infer = TRUE, null = 0)
+EMM_flat</code></pre>
+<pre><code>##  source     emmean        SE df lower.CL upper.CL t.ratio p.value
+##  non-skim 36.26182 0.3183825 22 35.60153 36.92210 113.894  &lt;.0001
+##  skim     40.96905 0.5222716 22 39.88592 42.05218  78.444  &lt;.0001
+## 
+## Results are averaged over the levels of: percent, dich 
+## Confidence level used: 0.95</code></pre>
+<pre class="r"><code>contrast(EMM_flat, method = &quot;revpairwise&quot;, infer = TRUE)</code></pre>
+<pre><code>##  contrast          estimate        SE df lower.CL upper.CL t.ratio p.value
+##  skim - (non-skim) 4.707234 0.6176702 22 3.426265 5.988204   7.621  &lt;.0001
+## 
+## Results are averaged over the levels of: percent, dich 
+## Confidence level used: 0.95</code></pre>
+<pre class="r"><code>EMM_prop &lt;- emmeans(mod_1, &quot;source&quot;, weights = &quot;proportional&quot;, infer = TRUE, null = 0)
+EMM_prop</code></pre>
+<pre><code>##  source     emmean        SE df lower.CL upper.CL t.ratio p.value
+##  non-skim 36.09759 0.3198020 22 35.43436 36.76082 112.875  &lt;.0001
+##  skim     40.26090 0.5004171 22 39.22310 41.29871  80.455  &lt;.0001
+## 
+## Results are averaged over the levels of: percent, dich 
+## Confidence level used: 0.95</code></pre>
+<pre class="r"><code>contrast(EMM_prop, method = &quot;revpairwise&quot;, infer = TRUE)</code></pre>
+<pre><code>##  contrast          estimate        SE df lower.CL upper.CL t.ratio p.value
+##  skim - (non-skim)  4.16331 0.6249491 22 2.867245 5.459375   6.662  &lt;.0001
+## 
+## Results are averaged over the levels of: percent, dich 
+## Confidence level used: 0.95</code></pre>
+<pre class="r"><code>EMM_outer &lt;- emmeans(mod_1, &quot;source&quot;, weights = &quot;outer&quot;, infer = TRUE, null = 0)
+EMM_outer</code></pre>
+<pre><code>##  source     emmean        SE df lower.CL upper.CL t.ratio p.value
+##  non-skim 36.09759 0.3198020 22 35.43436 36.76082 112.875  &lt;.0001
+##  skim     40.26090 0.5004171 22 39.22310 41.29871  80.455  &lt;.0001
+## 
+## Results are averaged over the levels of: percent, dich 
+## Confidence level used: 0.95</code></pre>
+<pre class="r"><code>contrast(EMM_outer, method = &quot;revpairwise&quot;, infer = TRUE)</code></pre>
+<pre><code>##  contrast          estimate        SE df lower.CL upper.CL t.ratio p.value
+##  skim - (non-skim)  4.16331 0.6249491 22 2.867245 5.459375   6.662  &lt;.0001
+## 
+## Results are averaged over the levels of: percent, dich 
+## Confidence level used: 0.95</code></pre>
+<pre class="r"><code># emmeans(mod_1, c(&quot;source&quot;, &quot;percent&quot;), weights = &quot;prop&quot;) %&gt;% emmeans(&quot;source&quot;, weights = &quot;prop&quot;)</code></pre>
+<p><br></p>
+<p>Table for emmeans of model
+<code>conc ~ source + x + factor(percent) + dich</code> using different
+weights</p>
+<table>
+<thead>
+<tr class="header">
+<th>Emmeans</th>
+<th>weights=“equal”</th>
+<th>weights=“prop”</th>
+<th>weights=“outer”</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>non-skim</td>
+<td>36.26182</td>
+<td>36.09759</td>
+<td>36.09759</td>
+</tr>
+<tr class="even">
+<td>skim</td>
+<td>40.42513</td>
+<td>40.26090</td>
+<td>40.26090</td>
+</tr>
+</tbody>
+</table>
+<p>In this linear model without interactions, using weights =
+“proportional” seems to give the same emmeans as using weights =
+“outer”</p>
+<div id="calculate-by-ourselves-1" class="section level3">
+<h3>Calculate by ourselves</h3>
+<p><span class="math display">\[y = 3.72477 + 4.16331*source_{skim} +
+1.59508x + 0.01478*percent_{12} - 0.07722*percent_{15} \\+
+2.6349*percent_{18} + 2.24182*dich_{high} + \varepsilon\]</span></p>
+<pre class="r"><code># ref_grid creates an `emmGrid` class object
+ref_grid(mod_1)</code></pre>
+<pre><code>## &#39;emmGrid&#39; object with variables:
+##     source = non-skim, skim
+##     x = 19.293
+##     percent =  9, 12, 15, 18
+##     dich = Low, High</code></pre>
+<pre class="r"><code># data.frame contains the combinations of the variables that define the reference grid. In addition, there is an auxiliary column named &quot;.wgt.&quot; holding the observed frequencies (or weights) for each factor combination (excluding covariates).
+ref_grid(mod_1)@grid</code></pre>
+<pre><code>##      source        x percent dich .wgt.
+## 1  non-skim 19.29252       9  Low     4
+## 2      skim 19.29252       9  Low     2
+## 3  non-skim 19.29252      12  Low     3
+## 4      skim 19.29252      12  Low     0
+## 5  non-skim 19.29252      15  Low     2
+## 6      skim 19.29252      15  Low     0
+## 7  non-skim 19.29252      18  Low     3
+## 8      skim 19.29252      18  Low     0
+## 9  non-skim 19.29252       9 High     1
+## 10     skim 19.29252       9 High     1
+## 11 non-skim 19.29252      12 High     3
+## 12     skim 19.29252      12 High     3
+## 13 non-skim 19.29252      15 High     3
+## 14     skim 19.29252      15 High     2
+## 15 non-skim 19.29252      18 High     1
+## 16     skim 19.29252      18 High     1</code></pre>
+<pre class="r"><code># matrix. Each row consists of the linear function of the regression coefficients for predicting its corresponding element of the reference grid. The rows of this matrix go in one-to-one correspondence with the rows of grid above, and the columns with elements of bhat.
+xs_mx &lt;- ref_grid(mod_1)@linfct
+xs_mx</code></pre>
+<pre><code>##    (Intercept) sourceskim        x factor(percent)12 factor(percent)15
+## 1            1          0 19.29252                 0                 0
+## 2            1          1 19.29252                 0                 0
+## 3            1          0 19.29252                 1                 0
+## 4            1          1 19.29252                 1                 0
+## 5            1          0 19.29252                 0                 1
+## 6            1          1 19.29252                 0                 1
+## 7            1          0 19.29252                 0                 0
+## 8            1          1 19.29252                 0                 0
+## 9            1          0 19.29252                 0                 0
+## 10           1          1 19.29252                 0                 0
+## 11           1          0 19.29252                 1                 0
+## 12           1          1 19.29252                 1                 0
+## 13           1          0 19.29252                 0                 1
+## 14           1          1 19.29252                 0                 1
+## 15           1          0 19.29252                 0                 0
+## 16           1          1 19.29252                 0                 0
+##    factor(percent)18 dichHigh
+## 1                  0        0
+## 2                  0        0
+## 3                  0        0
+## 4                  0        0
+## 5                  0        0
+## 6                  0        0
+## 7                  1        0
+## 8                  1        0
+## 9                  0        1
+## 10                 0        1
+## 11                 0        1
+## 12                 0        1
+## 13                 0        1
+## 14                 0        1
+## 15                 1        1
+## 16                 1        1</code></pre>
+<pre class="r"><code># numeric. The regression coefficients
+beta_vec &lt;- ref_grid(mod_1)@bhat
+beta_vec</code></pre>
+<pre><code>## [1]  3.72477429  4.16331005  1.59507501  0.01477854 -0.07722402  2.63489942
+## [7]  2.24182362</code></pre>
+<pre class="r"><code># predictions for every combination of the variables
+pred &lt;- xs_mx %*% beta_vec
+pred</code></pre>
+<pre><code>##        [,1]
+## 1  34.49779
+## 2  38.66110
+## 3  34.51257
+## 4  38.67588
+## 5  34.42057
+## 6  38.58388
+## 7  37.13269
+## 8  41.29600
+## 9  36.73961
+## 10 40.90292
+## 11 36.75439
+## 12 40.91770
+## 13 36.66239
+## 14 40.82570
+## 15 39.37451
+## 16 43.53782</code></pre>
+<pre class="r"><code># Frequencies of each combination of covariates in the dataset
+addmargins(with(pigs_df, table(percent, dich)), margin = 1:2)</code></pre>
+<pre><code>##        dich
+## percent Low High Sum
+##     9     6    2   8
+##     12    3    6   9
+##     15    2    5   7
+##     18    3    2   5
+##     Sum  14   15  29</code></pre>
+<pre class="r"><code># ---------- Get the &quot;outer&quot; weights for calculating emmeans ----------
+observed &lt;- with(pigs_df, table(percent, dich))
+
+## Row, column and grand totals
+row_totals &lt;- apply(observed, 1, sum)
+col_totals &lt;- apply(observed, 2, sum)
+grand_total &lt;- sum(observed)
+
+## Calculating &quot;expected frequencies&quot; and outer weights
+expected &lt;- outer(row_totals, col_totals)
+outer_wts &lt;- expected/sum(expected)
+outer_wts</code></pre>
+<pre><code>##           Low       High
+## 9  0.13317479 0.14268728
+## 12 0.14982164 0.16052319
+## 15 0.11652794 0.12485137
+## 18 0.08323424 0.08917955</code></pre>
+<pre class="r"><code># Get the &quot;flat&quot; weights
+ref_grid(mod_1)@grid %&gt;%
+  rename(sample_size = .wgt.) %&gt;% 
+  group_by(source) %&gt;% 
+  mutate(weights = if_else(sample_size != 0, 1/sum(sample_size != 0), 0)) %&gt;% 
+  as.data.frame()</code></pre>
+<pre><code>##      source        x percent dich sample_size weights
+## 1  non-skim 19.29252       9  Low           4   0.125
+## 2      skim 19.29252       9  Low           2   0.200
+## 3  non-skim 19.29252      12  Low           3   0.125
+## 4      skim 19.29252      12  Low           0   0.000
+## 5  non-skim 19.29252      15  Low           2   0.125
+## 6      skim 19.29252      15  Low           0   0.000
+## 7  non-skim 19.29252      18  Low           3   0.125
+## 8      skim 19.29252      18  Low           0   0.000
+## 9  non-skim 19.29252       9 High           1   0.125
+## 10     skim 19.29252       9 High           1   0.200
+## 11 non-skim 19.29252      12 High           3   0.125
+## 12     skim 19.29252      12 High           3   0.200
+## 13 non-skim 19.29252      15 High           3   0.125
+## 14     skim 19.29252      15 High           2   0.200
+## 15 non-skim 19.29252      18 High           1   0.125
+## 16     skim 19.29252      18 High           1   0.200</code></pre>
+<pre class="r"><code># Get the &quot;equal&quot; weights
+observed &lt;- with(pigs_df, table(percent, dich))
+eq_wt &lt;- 1/(nrow(observed)*ncol(observed))
+eqwt_df &lt;- observed
+eqwt_df[] &lt;- eq_wt
+eqwt_df</code></pre>
+<pre><code>##        dich
+## percent   Low  High
+##      9  0.125 0.125
+##      12 0.125 0.125
+##      15 0.125 0.125
+##      18 0.125 0.125</code></pre>
+<pre class="r"><code># Get the &quot;proportional&quot; weights
+addmargins(with(pigs_df, table(percent, dich)), margin = 1:2)/29</code></pre>
+<pre><code>##        dich
+## percent        Low       High        Sum
+##     9   0.20689655 0.06896552 0.27586207
+##     12  0.10344828 0.20689655 0.31034483
+##     15  0.06896552 0.17241379 0.24137931
+##     18  0.10344828 0.06896552 0.17241379
+##     Sum 0.48275862 0.51724138 1.00000000</code></pre>
+<p>Calculating emmeans using weights=“equal”:</p>
+<pre class="r"><code>eqwt_nonskim &lt;- c(1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0)
+eqwt_skim &lt;- c(0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8)
+## Emmeans for non-skim using weights=&quot;equal&quot; (default)
+eqwt_nonskim %*% pred</code></pre>
+<pre><code>##          [,1]
+## [1,] 36.26182</code></pre>
+<pre class="r"><code>## Emmeans for skim using weights=&quot;equal&quot; (default)
+eqwt_skim %*% pred</code></pre>
+<pre><code>##          [,1]
+## [1,] 40.42513</code></pre>
+<p>Calculating emmeans using weights=“flat”:</p>
+<pre class="r"><code>ftwt_nonskim &lt;- c(1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0)
+ftwt_skim &lt;- c(0, 1/5, 0, 0, 0, 0, 0, 0, 0, 1/5, 0, 1/5, 0, 1/5, 0, 1/5)
+## Emmeans for non-skim using weights=&quot;flat&quot;
+ftwt_nonskim %*% pred</code></pre>
+<pre><code>##          [,1]
+## [1,] 36.26182</code></pre>
+<pre class="r"><code>## Emmeans for skim using weights=&quot;flat&quot;
+ftwt_skim %*% pred</code></pre>
+<pre><code>##          [,1]
+## [1,] 40.96905</code></pre>
+<p>Calculating emmeans using weights=“proportional”:</p>
+<pre class="r"><code>prop_nonskim &lt;- c(6/29, 0, 3/29, 0, 2/29, 0, 3/29, 0, 2/29, 0, 6/29, 0, 5/29, 0, 2/29, 0)
+prop_skim &lt;- c(0, 6/29, 0, 3/29, 0, 2/29, 0, 3/29, 0, 2/29, 0, 6/29, 0, 5/29, 0, 2/29)
+## Emmeans for non-skim using weights=&quot;proportional&quot;
+prop_nonskim %*% pred</code></pre>
+<pre><code>##          [,1]
+## [1,] 36.09759</code></pre>
+<pre class="r"><code>## Emmeans for skim using weights=&quot;proportional&quot;
+prop_skim %*% pred</code></pre>
+<pre><code>##         [,1]
+## [1,] 40.2609</code></pre>
+<p>Calculating emmeans using weights=“outer”:</p>
+<pre class="r"><code>outerwt_nonskim &lt;- c(0.13317479, 0, 0.14982164, 0, 0.11652794, 0, 0.08323424, 0, 0.14268728, 0, 0.16052319, 0, 0.12485137, 0, 0.08917955, 0)
+outerwt_skim &lt;- c(0, 0.13317479, 0, 0.14982164, 0, 0.11652794, 0, 0.08323424, 0, 0.14268728, 0, 0.16052319, 0, 0.12485137, 0, 0.08917955)
+## Emmeans for non-skim using weights=&quot;outer&quot;
+outerwt_nonskim %*% pred</code></pre>
+<pre><code>##          [,1]
+## [1,] 36.09759</code></pre>
+<pre class="r"><code>## Emmeans for skim using weights=&quot;outer&quot;
+outerwt_skim %*% pred</code></pre>
+<pre><code>##         [,1]
+## [1,] 40.2609</code></pre>
+<p>Our hand-calculated results match those from <code>emmeans()</code>
+function. <strong>All of the above 3 weights for the <code>source</code>
+(exposed group and unexposed group) are the same. So they are all
+adjusted means.</strong></p>
+</div>
+<div id="weights-prop-vs-outer" class="section level3">
+<h3>Weights “prop” vs “outer”</h3>
+<p>In this case of linear model without interactions, I think we can
+prove emmeans using wights=“proportional” and weights=“outer” are the
+same. Let’s imagine a model with 1 binary primary predictor and 2 binary
+covariates:</p>
+<p><span class="math display">\[y = \beta_0 + \beta_1*source_{skim} +
+\beta_2*percent_{high} + \beta_3dich_{high} + \varepsilon\]</span>
+Emmeans for source using wights=“proportional”:</p>
+<p><img src="images/emmeans_proof1.jpg" /></p>
+<p>and similarly for emmeans for source skim.</p>
+<p>This proof can be extended to other linear models (with more
+covariates) without interactions.</p>
+</div>
+</div>
+<div id="using-model-with-interaction" class="section level2">
+<h2>Using model with interaction</h2>
+<div id="model-conc-source-x-factorpercentdich" class="section level3">
+<h3>Model <code>conc ~ source + x + factor(percent)*dich</code></h3>
+<pre class="r"><code>mod_2 &lt;- lm(conc ~ source + x + factor(percent)*dich, data = pigs_df)
+summary(mod_2)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = conc ~ source + x + factor(percent) * dich, data = pigs_df)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.5497 -0.7113  0.1390  0.7113  3.2705 
+## 
+## Coefficients:
+##                            Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                  4.1135     1.7490   2.352   0.0296 *  
+## sourceskim                   4.0800     0.6518   6.260 5.20e-06 ***
+## x                            1.5908     0.1088  14.625 8.58e-12 ***
+## factor(percent)12           -0.3075     1.0410  -0.295   0.7709    
+## factor(percent)15           -1.0615     1.2033  -0.882   0.3887    
+## factor(percent)18            2.1828     1.0281   2.123   0.0471 *  
+## dichHigh                     1.1009     1.2631   0.872   0.3943    
+## factor(percent)12:dichHigh   1.2096     1.5458   0.783   0.4436    
+## factor(percent)15:dichHigh   2.1349     1.6549   1.290   0.2125    
+## factor(percent)18:dichHigh   1.5554     1.7801   0.874   0.3932    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.409 on 19 degrees of freedom
+## Multiple R-squared:  0.9809, Adjusted R-squared:  0.9718 
+## F-statistic: 108.3 on 9 and 19 DF,  p-value: 2.103e-14</code></pre>
+<pre class="r"><code>EMM_equal2 &lt;- emmeans(mod_2, &quot;source&quot;, weights = &quot;equal&quot;, infer = TRUE, null = 0)
+EMM_equal2</code></pre>
+<pre><code>##  source     emmean        SE df lower.CL upper.CL t.ratio p.value
+##  non-skim 36.17009 0.3393370 19 35.45985 36.88033 106.590  &lt;.0001
+##  skim     40.25012 0.5577774 19 39.08268 41.41756  72.162  &lt;.0001
+## 
+## Results are averaged over the levels of: percent, dich 
+## Confidence level used: 0.95</code></pre>
+<pre class="r"><code>contrast(EMM_equal2, method = &quot;revpairwise&quot;, infer = TRUE)</code></pre>
+<pre><code>##  contrast          estimate        SE df lower.CL upper.CL t.ratio p.value
+##  skim - (non-skim) 4.080029 0.6518138 19 2.715767 5.444291   6.260  &lt;.0001
+## 
+## Results are averaged over the levels of: percent, dich 
+## Confidence level used: 0.95</code></pre>
+<pre class="r"><code>EMM_flat2 &lt;- emmeans(mod_2, &quot;source&quot;, weights = &quot;flat&quot;, infer = TRUE, null = 0)
+EMM_flat2</code></pre>
+<pre><code>##  source     emmean        SE df lower.CL upper.CL t.ratio p.value
+##  non-skim 36.17009 0.3393370 19 35.45985 36.88033 106.590  &lt;.0001
+##  skim     40.90720 0.5677474 19 39.71889 42.09551  72.052  &lt;.0001
+## 
+## Results are averaged over the levels of: percent, dich 
+## Confidence level used: 0.95</code></pre>
+<pre class="r"><code>contrast(EMM_flat2, method = &quot;revpairwise&quot;, infer = TRUE)</code></pre>
+<pre><code>##  contrast          estimate        SE df lower.CL upper.CL t.ratio p.value
+##  skim - (non-skim) 4.737113 0.6488837 19 3.378984 6.095242   7.300  &lt;.0001
+## 
+## Results are averaged over the levels of: percent, dich 
+## Confidence level used: 0.95</code></pre>
+<pre class="r"><code>EMM_prop2 &lt;- emmeans(mod_2, &quot;source&quot;, weights = &quot;proportional&quot;, infer = TRUE, null = 0)
+EMM_prop2</code></pre>
+<pre><code>##  source     emmean        SE df lower.CL upper.CL t.ratio p.value
+##  non-skim 36.12344 0.3307670 19 35.43114 36.81574 109.211  &lt;.0001
+##  skim     40.20347 0.5201548 19 39.11477 41.29216  77.291  &lt;.0001
+## 
+## Results are averaged over the levels of: percent, dich 
+## Confidence level used: 0.95</code></pre>
+<pre class="r"><code>contrast(EMM_prop2, method = &quot;revpairwise&quot;, infer = TRUE)</code></pre>
+<pre><code>##  contrast          estimate        SE df lower.CL upper.CL t.ratio p.value
+##  skim - (non-skim) 4.080029 0.6518138 19 2.715767 5.444291   6.260  &lt;.0001
+## 
+## Results are averaged over the levels of: percent, dich 
+## Confidence level used: 0.95</code></pre>
+<pre class="r"><code>EMM_outer2 &lt;- emmeans(mod_2, &quot;source&quot;, weights = &quot;outer&quot;, infer = TRUE, null = 0)
+EMM_outer2</code></pre>
+<pre><code>##  source     emmean        SE df lower.CL upper.CL t.ratio p.value
+##  non-skim 35.99725 0.3409342 19 35.28366 36.71083 105.584  &lt;.0001
+##  skim     40.07728 0.5471006 19 38.93218 41.22237  73.254  &lt;.0001
+## 
+## Results are averaged over the levels of: percent, dich 
+## Confidence level used: 0.95</code></pre>
+<pre class="r"><code>contrast(EMM_outer2, method = &quot;revpairwise&quot;, infer = TRUE)</code></pre>
+<pre><code>##  contrast          estimate        SE df lower.CL upper.CL t.ratio p.value
+##  skim - (non-skim) 4.080029 0.6518138 19 2.715767 5.444291   6.260  &lt;.0001
+## 
+## Results are averaged over the levels of: percent, dich 
+## Confidence level used: 0.95</code></pre>
+<p><br></p>
+<p>Table for emmeans of model
+<code>conc ~ source + x + factor(percent)*dich</code> using different
+weights</p>
+<table>
+<thead>
+<tr class="header">
+<th>Emmeans</th>
+<th>weights=“equal”</th>
+<th>weights=“prop”</th>
+<th>weights=“outer”</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>non-skim</td>
+<td>36.17009</td>
+<td>36.12344</td>
+<td>35.99725</td>
+</tr>
+<tr class="even">
+<td>skim</td>
+<td>40.25012</td>
+<td>40.20347</td>
+<td>40.07728</td>
+</tr>
+</tbody>
+</table>
+<p>When we have interactions between the 2 categorical covariates, the
+emmeans obtained using weights=“proportional” are different from using
+weights=“outer”.</p>
+</div>
+<div id="calculate-by-ourselves-2" class="section level3">
+<h3>Calculate by ourselves</h3>
+<p><span class="math display">\[y = 4.1135 + 4.08*source_{skim} +
+1.5908x - 0.3075*percent_{12} - 1.0615*percent_{15} +
+2.1828*percent_{18}\\ + 1.1009*dich_{high} +
+1.2096*percent_{12}*dich_{high} + 2.1349*percent_{15}*dich_{high} \\
++ 1.5554*percent_{18}*dich_{high} + \varepsilon\]</span></p>
+<pre class="r"><code># ref_grid creates an `emmGrid` class object
+ref_grid(mod_2)</code></pre>
+<pre><code>## &#39;emmGrid&#39; object with variables:
+##     source = non-skim, skim
+##     x = 19.293
+##     percent =  9, 12, 15, 18
+##     dich = Low, High</code></pre>
+<pre class="r"><code># data.frame contains the combinations of the variables that define the reference grid. In addition, there is an auxiliary column named &quot;.wgt.&quot; holding the observed frequencies (or weights) for each factor combination (excluding covariates).
+ref_grid(mod_2)@grid</code></pre>
+<pre><code>##      source        x percent dich .wgt.
+## 1  non-skim 19.29252       9  Low     4
+## 2      skim 19.29252       9  Low     2
+## 3  non-skim 19.29252      12  Low     3
+## 4      skim 19.29252      12  Low     0
+## 5  non-skim 19.29252      15  Low     2
+## 6      skim 19.29252      15  Low     0
+## 7  non-skim 19.29252      18  Low     3
+## 8      skim 19.29252      18  Low     0
+## 9  non-skim 19.29252       9 High     1
+## 10     skim 19.29252       9 High     1
+## 11 non-skim 19.29252      12 High     3
+## 12     skim 19.29252      12 High     3
+## 13 non-skim 19.29252      15 High     3
+## 14     skim 19.29252      15 High     2
+## 15 non-skim 19.29252      18 High     1
+## 16     skim 19.29252      18 High     1</code></pre>
+<pre class="r"><code># matrix. Each row consists of the linear function of the regression coefficients for predicting its corresponding element of the reference grid. The rows of this matrix go in one-to-one correspondence with the rows of grid above, and the columns with elements of bhat.
+xs_mx &lt;- ref_grid(mod_2)@linfct
+xs_mx</code></pre>
+<pre><code>##    (Intercept) sourceskim        x factor(percent)12 factor(percent)15
+## 1            1          0 19.29252                 0                 0
+## 2            1          1 19.29252                 0                 0
+## 3            1          0 19.29252                 1                 0
+## 4            1          1 19.29252                 1                 0
+## 5            1          0 19.29252                 0                 1
+## 6            1          1 19.29252                 0                 1
+## 7            1          0 19.29252                 0                 0
+## 8            1          1 19.29252                 0                 0
+## 9            1          0 19.29252                 0                 0
+## 10           1          1 19.29252                 0                 0
+## 11           1          0 19.29252                 1                 0
+## 12           1          1 19.29252                 1                 0
+## 13           1          0 19.29252                 0                 1
+## 14           1          1 19.29252                 0                 1
+## 15           1          0 19.29252                 0                 0
+## 16           1          1 19.29252                 0                 0
+##    factor(percent)18 dichHigh factor(percent)12:dichHigh
+## 1                  0        0                          0
+## 2                  0        0                          0
+## 3                  0        0                          0
+## 4                  0        0                          0
+## 5                  0        0                          0
+## 6                  0        0                          0
+## 7                  1        0                          0
+## 8                  1        0                          0
+## 9                  0        1                          0
+## 10                 0        1                          0
+## 11                 0        1                          1
+## 12                 0        1                          1
+## 13                 0        1                          0
+## 14                 0        1                          0
+## 15                 1        1                          0
+## 16                 1        1                          0
+##    factor(percent)15:dichHigh factor(percent)18:dichHigh
+## 1                           0                          0
+## 2                           0                          0
+## 3                           0                          0
+## 4                           0                          0
+## 5                           0                          0
+## 6                           0                          0
+## 7                           0                          0
+## 8                           0                          0
+## 9                           0                          0
+## 10                          0                          0
+## 11                          0                          0
+## 12                          0                          0
+## 13                          1                          0
+## 14                          1                          0
+## 15                          0                          1
+## 16                          0                          1</code></pre>
+<pre class="r"><code># numeric. The regression coefficients
+beta_vec &lt;- ref_grid(mod_2)@bhat
+beta_vec</code></pre>
+<pre><code>##  [1]  4.1135216  4.0800291  1.5907806 -0.3075074 -1.0614648  2.1827502
+##  [7]  1.1009445  1.2095904  2.1348671  1.5554032</code></pre>
+<pre class="r"><code># predictions for every combination of the variables
+pred &lt;- xs_mx %*% beta_vec
+
+# Frequencies of each combination of covariates in the dataset
+addmargins(with(pigs_df, table(percent, dich)), margin = 1:2)</code></pre>
+<pre><code>##        dich
+## percent Low High Sum
+##     9     6    2   8
+##     12    3    6   9
+##     15    2    5   7
+##     18    3    2   5
+##     Sum  14   15  29</code></pre>
+<pre class="r"><code># ---------- Get the &quot;outer&quot; weights for calculating emmeans ----------
+observed &lt;- with(pigs_df, table(percent, dich))
+
+## Row, column and grand totals
+row_totals &lt;- apply(observed, 1, sum)
+col_totals &lt;- apply(observed, 2, sum)
+grand_total &lt;- sum(observed)
+
+## Calculating &quot;expected frequencies&quot; and outer weights
+expected &lt;- outer(row_totals, col_totals)
+outer_wts &lt;- expected/sum(expected)
+outer_wts</code></pre>
+<pre><code>##           Low       High
+## 9  0.13317479 0.14268728
+## 12 0.14982164 0.16052319
+## 15 0.11652794 0.12485137
+## 18 0.08323424 0.08917955</code></pre>
+<p>Calculating emmeans using weights=“equal”:</p>
+<pre class="r"><code>eqwt_nonskim &lt;- c(1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0)
+eqwt_skim &lt;- c(0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8)
+## Emmeans for non-skim using weights=&quot;equal&quot; (default)
+eqwt_nonskim %*% pred</code></pre>
+<pre><code>##          [,1]
+## [1,] 36.17009</code></pre>
+<pre class="r"><code>## Emmeans for skim using weights=&quot;equal&quot; (default)
+eqwt_skim %*% pred</code></pre>
+<pre><code>##          [,1]
+## [1,] 40.25012</code></pre>
+<p>Calculating emmeans using weights=“proportional”:</p>
+<pre class="r"><code>prop_nonskim &lt;- c(6/29, 0, 3/29, 0, 2/29, 0, 3/29, 0, 2/29, 0, 6/29, 0, 5/29, 0, 2/29, 0)
+prop_skim &lt;- c(0, 6/29, 0, 3/29, 0, 2/29, 0, 3/29, 0, 2/29, 0, 6/29, 0, 5/29, 0, 2/29)
+## Emmeans for non-skim using weights=&quot;proportional&quot;
+prop_nonskim %*% pred</code></pre>
+<pre><code>##          [,1]
+## [1,] 36.12344</code></pre>
+<pre class="r"><code>## Emmeans for skim using weights=&quot;proportional&quot;
+prop_skim %*% pred</code></pre>
+<pre><code>##          [,1]
+## [1,] 40.20347</code></pre>
+<p>Calculating emmeans using weights=“outer”:</p>
+<pre class="r"><code>outerwt_nonskim &lt;- c(0.13317479, 0, 0.14982164, 0, 0.11652794, 0, 0.08323424, 0, 0.14268728, 0, 0.16052319, 0, 0.12485137, 0, 0.08917955, 0)
+outerwt_skim &lt;- c(0, 0.13317479, 0, 0.14982164, 0, 0.11652794, 0, 0.08323424, 0, 0.14268728, 0, 0.16052319, 0, 0.12485137, 0, 0.08917955)
+## Emmeans for non-skim using weights=&quot;outer&quot;
+outerwt_nonskim %*% pred</code></pre>
+<pre><code>##          [,1]
+## [1,] 35.99725</code></pre>
+<pre class="r"><code>## Emmeans for skim using weights=&quot;outer&quot;
+outerwt_skim %*% pred</code></pre>
+<pre><code>##          [,1]
+## [1,] 40.07728</code></pre>
+<p>Our hand-calculated results match those from <code>emmeans()</code>
+function.</p>
+</div>
+<div id="model-conc-source-xfactorpercent-dich" class="section level3">
+<h3>Model <code>conc ~ source + x*factor(percent) + dich</code></h3>
+<pre class="r"><code>mod_3 &lt;- lm(conc ~ source + x*factor(percent) + dich, data = pigs_df)
+summary(mod_3)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = conc ~ source + x * factor(percent) + dich, data = pigs_df)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.4596 -0.7174  0.0130  0.6517  3.5230 
+## 
+## Coefficients:
+##                     Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)          5.93011    3.50013   1.694   0.1065    
+## sourceskim           4.02485    0.68130   5.908 1.09e-05 ***
+## x                    1.46494    0.20988   6.980 1.19e-06 ***
+## factor(percent)12   -1.15679    4.76340  -0.243   0.8107    
+## factor(percent)15   -2.48802    4.49317  -0.554   0.5862    
+## factor(percent)18   -1.03805    4.27733  -0.243   0.8108    
+## dichHigh             2.39134    0.85417   2.800   0.0114 *  
+## x:factor(percent)12  0.07488    0.25724   0.291   0.7741    
+## x:factor(percent)15  0.13668    0.23691   0.577   0.5708    
+## x:factor(percent)18  0.20202    0.23207   0.871   0.3949    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.442 on 19 degrees of freedom
+## Multiple R-squared:   0.98,  Adjusted R-squared:  0.9705 
+## F-statistic: 103.3 on 9 and 19 DF,  p-value: 3.248e-14</code></pre>
+<pre class="r"><code>EMM_equal3 &lt;- emmeans(mod_3, &quot;source&quot;, weights = &quot;equal&quot;, infer = TRUE, null = 0)
+EMM_equal3</code></pre>
+<pre><code>##  source     emmean        SE df lower.CL upper.CL t.ratio p.value
+##  non-skim 36.21225 0.3470669 19 35.48583 36.93867 104.338  &lt;.0001
+##  skim     40.23710 0.5982020 19 38.98505 41.48915  67.263  &lt;.0001
+## 
+## Results are averaged over the levels of: percent, dich 
+## Confidence level used: 0.95</code></pre>
+<pre class="r"><code>contrast(EMM_equal3, method = &quot;revpairwise&quot;, infer = TRUE)</code></pre>
+<pre><code>##  contrast          estimate        SE df lower.CL upper.CL t.ratio p.value
+##  skim - (non-skim) 4.024848 0.6812953 19  2.59888 5.450815   5.908  &lt;.0001
+## 
+## Results are averaged over the levels of: percent, dich 
+## Confidence level used: 0.95</code></pre>
+<pre class="r"><code>EMM_prop3 &lt;- emmeans(mod_3, &quot;source&quot;, weights = &quot;proportional&quot;, infer = TRUE, null = 0)
+EMM_prop3</code></pre>
+<pre><code>##  source     emmean        SE df lower.CL upper.CL t.ratio p.value
+##  non-skim 36.04771 0.3507588 19 35.31357 36.78186 102.771  &lt;.0001
+##  skim     40.07256 0.5884491 19 38.84092 41.30420  68.099  &lt;.0001
+## 
+## Results are averaged over the levels of: percent, dich 
+## Confidence level used: 0.95</code></pre>
+<pre class="r"><code>contrast(EMM_prop3, method = &quot;revpairwise&quot;, infer = TRUE)</code></pre>
+<pre><code>##  contrast          estimate        SE df lower.CL upper.CL t.ratio p.value
+##  skim - (non-skim) 4.024848 0.6812953 19  2.59888 5.450815   5.908  &lt;.0001
+## 
+## Results are averaged over the levels of: percent, dich 
+## Confidence level used: 0.95</code></pre>
+<pre class="r"><code>EMM_outer3 &lt;- emmeans(mod_3, &quot;source&quot;, weights = &quot;outer&quot;, infer = TRUE, null = 0)
+EMM_outer3</code></pre>
+<pre><code>##  source     emmean        SE df lower.CL upper.CL t.ratio p.value
+##  non-skim 36.04771 0.3507588 19 35.31357 36.78186 102.771  &lt;.0001
+##  skim     40.07256 0.5884491 19 38.84092 41.30420  68.099  &lt;.0001
+## 
+## Results are averaged over the levels of: percent, dich 
+## Confidence level used: 0.95</code></pre>
+<pre class="r"><code>contrast(EMM_outer3, method = &quot;revpairwise&quot;, infer = TRUE)</code></pre>
+<pre><code>##  contrast          estimate        SE df lower.CL upper.CL t.ratio p.value
+##  skim - (non-skim) 4.024848 0.6812953 19  2.59888 5.450815   5.908  &lt;.0001
+## 
+## Results are averaged over the levels of: percent, dich 
+## Confidence level used: 0.95</code></pre>
+<p>In this model where a categorical covariate interacts with a
+continuous covariate, using weights = “proportional” gives the same
+emmeans as using weights = “outer”</p>
+</div>
+<div id="calculate-by-ourselves-3" class="section level3">
+<h3>Calculate by ourselves</h3>
+<pre class="r"><code># ref_grid creates an `emmGrid` class object
+ref_grid(mod_3)</code></pre>
+<pre><code>## &#39;emmGrid&#39; object with variables:
+##     source = non-skim, skim
+##     x = 19.293
+##     percent =  9, 12, 15, 18
+##     dich = Low, High</code></pre>
+<pre class="r"><code># data.frame contains the combinations of the variables that define the reference grid. In addition, there is an auxiliary column named &quot;.wgt.&quot; holding the observed frequencies (or weights) for each factor combination (excluding covariates).
+ref_grid(mod_3)@grid</code></pre>
+<pre><code>##      source        x percent dich .wgt.
+## 1  non-skim 19.29252       9  Low     4
+## 2      skim 19.29252       9  Low     2
+## 3  non-skim 19.29252      12  Low     3
+## 4      skim 19.29252      12  Low     0
+## 5  non-skim 19.29252      15  Low     2
+## 6      skim 19.29252      15  Low     0
+## 7  non-skim 19.29252      18  Low     3
+## 8      skim 19.29252      18  Low     0
+## 9  non-skim 19.29252       9 High     1
+## 10     skim 19.29252       9 High     1
+## 11 non-skim 19.29252      12 High     3
+## 12     skim 19.29252      12 High     3
+## 13 non-skim 19.29252      15 High     3
+## 14     skim 19.29252      15 High     2
+## 15 non-skim 19.29252      18 High     1
+## 16     skim 19.29252      18 High     1</code></pre>
+<pre class="r"><code># matrix. Each row consists of the linear function of the regression coefficients for predicting its corresponding element of the reference grid. The rows of this matrix go in one-to-one correspondence with the rows of grid above, and the columns with elements of bhat.
+xs_mx &lt;- ref_grid(mod_3)@linfct
+xs_mx</code></pre>
+<pre><code>##    (Intercept) sourceskim        x factor(percent)12 factor(percent)15
+## 1            1          0 19.29252                 0                 0
+## 2            1          1 19.29252                 0                 0
+## 3            1          0 19.29252                 1                 0
+## 4            1          1 19.29252                 1                 0
+## 5            1          0 19.29252                 0                 1
+## 6            1          1 19.29252                 0                 1
+## 7            1          0 19.29252                 0                 0
+## 8            1          1 19.29252                 0                 0
+## 9            1          0 19.29252                 0                 0
+## 10           1          1 19.29252                 0                 0
+## 11           1          0 19.29252                 1                 0
+## 12           1          1 19.29252                 1                 0
+## 13           1          0 19.29252                 0                 1
+## 14           1          1 19.29252                 0                 1
+## 15           1          0 19.29252                 0                 0
+## 16           1          1 19.29252                 0                 0
+##    factor(percent)18 dichHigh x:factor(percent)12 x:factor(percent)15
+## 1                  0        0             0.00000             0.00000
+## 2                  0        0             0.00000             0.00000
+## 3                  0        0            19.29252             0.00000
+## 4                  0        0            19.29252             0.00000
+## 5                  0        0             0.00000            19.29252
+## 6                  0        0             0.00000            19.29252
+## 7                  1        0             0.00000             0.00000
+## 8                  1        0             0.00000             0.00000
+## 9                  0        1             0.00000             0.00000
+## 10                 0        1             0.00000             0.00000
+## 11                 0        1            19.29252             0.00000
+## 12                 0        1            19.29252             0.00000
+## 13                 0        1             0.00000            19.29252
+## 14                 0        1             0.00000            19.29252
+## 15                 1        1             0.00000             0.00000
+## 16                 1        1             0.00000             0.00000
+##    x:factor(percent)18
+## 1              0.00000
+## 2              0.00000
+## 3              0.00000
+## 4              0.00000
+## 5              0.00000
+## 6              0.00000
+## 7             19.29252
+## 8             19.29252
+## 9              0.00000
+## 10             0.00000
+## 11             0.00000
+## 12             0.00000
+## 13             0.00000
+## 14             0.00000
+## 15            19.29252
+## 16            19.29252</code></pre>
+<pre class="r"><code># numeric. The regression coefficients
+beta_vec &lt;- ref_grid(mod_3)@bhat
+beta_vec</code></pre>
+<pre><code>##  [1]  5.93010802  4.02484759  1.46494413 -1.15678922 -2.48801902 -1.03805389
+##  [7]  2.39133964  0.07487921  0.13667518  0.20202011</code></pre>
+<pre class="r"><code># predictions for every combination of the variables
+pred &lt;- xs_mx %*% beta_vec
+
+# Frequencies of each combination of covariates in the dataset
+addmargins(with(pigs_df, table(percent, dich)), margin = 1:2)</code></pre>
+<pre><code>##        dich
+## percent Low High Sum
+##     9     6    2   8
+##     12    3    6   9
+##     15    2    5   7
+##     18    3    2   5
+##     Sum  14   15  29</code></pre>
+<pre class="r"><code># the &quot;outer&quot; weights for calculating emmeans
+outer_wts</code></pre>
+<pre><code>##           Low       High
+## 9  0.13317479 0.14268728
+## 12 0.14982164 0.16052319
+## 15 0.11652794 0.12485137
+## 18 0.08323424 0.08917955</code></pre>
+<p>Calculating emmeans using weights=“equal”:</p>
+<pre class="r"><code>eqwt_nonskim &lt;- c(1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0)
+eqwt_skim &lt;- c(0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8, 0, 1/8)
+## Emmeans for non-skim using weights=&quot;equal&quot; (default)
+eqwt_nonskim %*% pred</code></pre>
+<pre><code>##          [,1]
+## [1,] 36.21225</code></pre>
+<pre class="r"><code>## Emmeans for skim using weights=&quot;equal&quot; (default)
+eqwt_skim %*% pred</code></pre>
+<pre><code>##         [,1]
+## [1,] 40.2371</code></pre>
+<p>Calculating emmeans using weights=“proportional”:</p>
+<pre class="r"><code>prop_nonskim &lt;- c(6/29, 0, 3/29, 0, 2/29, 0, 3/29, 0, 2/29, 0, 6/29, 0, 5/29, 0, 2/29, 0)
+prop_skim &lt;- c(0, 6/29, 0, 3/29, 0, 2/29, 0, 3/29, 0, 2/29, 0, 6/29, 0, 5/29, 0, 2/29)
+## Emmeans for non-skim using weights=&quot;proportional&quot;
+prop_nonskim %*% pred</code></pre>
+<pre><code>##          [,1]
+## [1,] 36.04771</code></pre>
+<pre class="r"><code>## Emmeans for skim using weights=&quot;proportional&quot;
+prop_skim %*% pred</code></pre>
+<pre><code>##          [,1]
+## [1,] 40.07256</code></pre>
+<p>Calculating emmeans using weights=“outer”:</p>
+<pre class="r"><code>outerwt_nonskim &lt;- c(0.13317479, 0, 0.14982164, 0, 0.11652794, 0, 0.08323424, 0, 0.14268728, 0, 0.16052319, 0, 0.12485137, 0, 0.08917955, 0)
+outerwt_skim &lt;- c(0, 0.13317479, 0, 0.14982164, 0, 0.11652794, 0, 0.08323424, 0, 0.14268728, 0, 0.16052319, 0, 0.12485137, 0, 0.08917955)
+## Emmeans for non-skim using weights=&quot;outer&quot;
+outerwt_nonskim %*% pred</code></pre>
+<pre><code>##          [,1]
+## [1,] 36.04771</code></pre>
+<pre class="r"><code>## Emmeans for skim using weights=&quot;outer&quot;
+outerwt_skim %*% pred</code></pre>
+<pre><code>##          [,1]
+## [1,] 40.07256</code></pre>
+<p>The hand-calculated results align with the results from
+<code>emmeans</code> function.</p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

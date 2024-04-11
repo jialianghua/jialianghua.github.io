@@ -30,4 +30,6 @@ navbar:
 output:
   html_document:
     theme: cosmo
+    include:
+      in_header: header.html
     css: styles.css

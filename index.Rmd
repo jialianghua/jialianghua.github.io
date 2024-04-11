@@ -6,6 +6,8 @@ output:
     toc_float: true
 ---
 
+<link rel="stylesheet" href="academicons/css/academicons.min.css"/>
+
 <img src="images/JialiangHua.jpg" style="width:35%">
 
 * * *

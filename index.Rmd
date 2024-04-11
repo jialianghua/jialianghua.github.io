@@ -10,14 +10,15 @@ output:
 
 * * *
 
-# About me
+# About Me
 
 - I am Jialiang Hua. I am a Biostatistician at [Mental Health Data Science](https://www.columbiapsychiatry.org/research/research-areas/mental-health-data-science), Columbia University Department of Psychiatry and New York State Psychiatric Institute
 - I am a [Columbia University](https://www.columbia.edu) alum (MS in Biostatistics)
 - I currently live in New Jersey.
-- I like music, guitar and photography.
+- I have a passion for data science and neuroscience.
+- In my free time, I enjoy reading, listening to music, playing the guitar, and photography.
 
-# Links to pages within the site
+# Quick Navigation
 
 - [Resume](library/Resume_JialiangHua_202305_2.pdf)
 - [About](about.html)

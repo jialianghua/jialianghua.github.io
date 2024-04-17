@@ -18,3 +18,5 @@ This is the capstone project for my master's degree. Here you can find my [prese
 # My blog articles
 
 1. [**Chord Diagrams**](z_chord_diagram.html)
+
+2. [**Linear Regression**](z_linear_regression.html)

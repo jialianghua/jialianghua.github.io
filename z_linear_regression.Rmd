@@ -1,0 +1,26 @@
+---
+title: "Linear Regression"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+- **Sampling**: We wanna do research that makes generalizations or test hypotheses about a large population. But typically we can't get our hands on everyone in the population. So we try to get a random and representative sample.
+
+- **Sampling error**: The difference between the population and the sample. **Standard error** is an estimate of amount of sampling error.
+
+  - SE = SD/Sqrt(N)
+  
+Descriptive statistics --> inferential statistics
+
+- **Regression**: a statistical analysis used to predict scores on an outcome variable, based on scores on one or multiple predictor variables.
+
+  - Simple regression: one predictor variable 
+  
+  - Multiple regression: multiple predictors
+  
+
+
+
+

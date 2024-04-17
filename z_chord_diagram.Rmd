@@ -1,0 +1,19 @@
+---
+title: "Chord Diagram"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+# What is a chord diagram?
+
+A [**chord diagram**](https://en.wikipedia.org/wiki/Chord_diagram_(information_visualization)) is a graphical method of displaying the inter-relationships between data in a matrix. The data are arranged radially around a circle with the relationships between the data points typically drawn as arcs connecting the data.
+
+The format can be aesthetically pleasing, making it a popular choice in the world of data visualization.
+
+The primary use of chord diagrams is to show the flows or connections between several entities (called nodes). Each entity is represented by a fragment (often colored or pattered) along the circumference of the circle. Arcs are drawn between entities to show flows (and exchanges in economics). The thickness of the arc is proportional to the significance of the flow.
+
+# R packages to make chord diagrams
+
+Package `chorddiag` is the one that I used first. You can find it here: https://github.com/mattflor/chorddiag

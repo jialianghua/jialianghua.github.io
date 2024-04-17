@@ -6,7 +6,15 @@ output:
     toc_float: true
 ---
 
+# My Research
+
 1. **Identifying Important Risk Factors for Future Mania in Individuals with Major Depressive Disorder Using Weighted Random Forest Models and the NESARC Dataset**  
 This is the capstone project for my master's degree. Here you can find my [presentation slides](library/practicum project/mwPracticum_JialiangHua_final2.pptx) and the [report](library/practicum project/Practicum Report_JialiangHua.pdf).
 
 2. [**Understanding weights options "proportional" and "outer" in EMMeans**](z_understand_weights_prop_outer_in_emmeans.html)
+
+***
+
+# My blog articles
+
+1. [**Chord Diagrams**](z_chord_diagram.html)

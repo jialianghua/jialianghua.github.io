@@ -1,5 +1,6 @@
 ---
 title: Understanding weights options "proportional" and "outer" in EMMeans
+author: Jialiang Hua
 output: 
   html_document:
     toc: true

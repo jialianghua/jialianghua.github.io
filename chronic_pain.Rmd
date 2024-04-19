@@ -13,3 +13,4 @@ output:
 - [TMS Wiki](https://www.tmswiki.org)
 - [My TMS Journey](https://mytmsjourney.com)
   - [Recovery Roadmap](https://mytmsjourney.com/recovery-journey-roadmap/)
+- [Coursera Course: Reign of Pain](https://www.coursera.org/learn/reign-of-pain/)

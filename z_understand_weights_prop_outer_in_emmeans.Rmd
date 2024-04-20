@@ -1,5 +1,5 @@
 ---
-title: Understanding weights options "proportional" and "outer" in EMMeans
+title: Understanding weights options in Estimated Marginal Means (EMMs)
 author: Jialiang Hua
 output: 
   html_document:
@@ -15,7 +15,15 @@ library(readxl)
 library(writexl)
 ```
 
-## Pigs data
+# Introduction
+
+In this project, I pioneered research on weights options in Estimated Marginal Means (EMMs), clarifying application practices through empirical testing and mathematical analysis. Additionally, I collaborated with my colleagues at Mental Health Data Science, Columbia University Department of Psychiatry and New York State Psychiatric Institute to test and understand the “type” and “regrid” options in EMMs, and figured out the calculation methods of EMMs from models with link function for `emmeans` function in R, `Genmod lsmeans` and `%margins` macro in SAS.
+
+You can find our slides [here](library/Adjusted means sharpen-the-axe Dec 6 2023.pptx) and my [code packet](#mypacket) below.
+
+# My R code packet for understanding weights options in EMMs {#mypacket}
+
+## Our test data: Pigs data
 ```{r}
 data(pigs)
 set.seed(123)

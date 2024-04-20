@@ -12,7 +12,7 @@
 <meta name="author" content="Jialiang Hua" />
 
 
-<title>Understanding weights options “proportional” and “outer” in EMMeans</title>
+<title>Understanding weights options in Estimated Marginal Means (EMMs)</title>
 
 <script src="site_libs/header-attrs-2.26/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -395,15 +395,32 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Understanding weights options
-“proportional” and “outer” in EMMeans</h1>
+<h1 class="title toc-ignore">Understanding weights options in Estimated
+Marginal Means (EMMs)</h1>
 <h4 class="author">Jialiang Hua</h4>
 
 </div>
 
 
-<div id="pigs-data" class="section level2">
-<h2>Pigs data</h2>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>In this project, I pioneered research on weights options in Estimated
+Marginal Means (EMMs), clarifying application practices through
+empirical testing and mathematical analysis. Additionally, I
+collaborated with my colleagues at Mental Health Data Science, Columbia
+University Department of Psychiatry and New York State Psychiatric
+Institute to test and understand the “type” and “regrid” options in
+EMMs, and figured out the calculation methods of EMMs from models with
+link function for <code>emmeans</code> function in R,
+<code>Genmod lsmeans</code> and <code>%margins</code> macro in SAS.</p>
+<p>You can find our slides <a
+href="library/Adjusted%20means%20sharpen-the-axe%20Dec%206%202023.pptx">here</a>
+and my <a href="#mypacket">code packet</a> below.</p>
+</div>
+<div id="mypacket" class="section level1">
+<h1>My R code packet for understanding weights options in EMMs</h1>
+<div id="our-test-data-pigs-data" class="section level2">
+<h2>Our test data: Pigs data</h2>
 <pre class="r"><code>data(pigs)
 set.seed(123)
 bound &lt;- mean(pigs$conc)
@@ -1347,6 +1364,7 @@ outerwt_skim %*% pred</code></pre>
 ## [1,] 40.07256</code></pre>
 <p>The hand-calculated results align with the results from
 <code>emmeans</code> function.</p>
+</div>
 </div>
 </div>
 

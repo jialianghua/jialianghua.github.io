@@ -21,4 +21,4 @@ output:
 # Quick Navigation
 
 - [Resume](library/Resume_JialiangHua_202305_2.pdf)
-- [About](about.html)
+- [My research](research.html)

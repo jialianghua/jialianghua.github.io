@@ -22,3 +22,4 @@ output:
 
 - [Resume](library/Resume_JialiangHua_202305_2.pdf)
 - [My research](research.html)
+- [Contact](about.html#contact)

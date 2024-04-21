@@ -1,13 +1,17 @@
 ---
 title: "About"
 output: 
-  html_document:
-    toc: true
-    toc_float: true
+  html_document
 ---
 
-### About this site
+Welcome to my personal website! Here you'll find my research, resume, and blog articles on data science, statistics and neuroscience. This website also serves as an information hub for these subjects, accessible to both myself and everyone else, as I have been compiling valuable resources related to these fields and organizing them here.
 
-Sometimes you need to say a bit about the site -- how it was made, where it's hosted, where the source code can be found. 
+<br>
 
-If this is for a project or analysis, I recommend giving some details about the R package versions that you used to create the content.
+# Contact {#contact}
+
+Please feel free to reach out to me if you have any questions, suggestions or want to connect with me. You can shoot an [email](mailto:<dwjialiang@gmail.com>) to me or fill out the following contact form. Thanks!
+
+<div class="centered-container">
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfQVemNP6XaxEbuOroL5nXUGf5NvgT_65a5UPh2eQUqzX-gVQ/viewform?embedded=true" width="640" height="1200" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+</div>

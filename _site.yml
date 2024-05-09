@@ -3,7 +3,7 @@ output_dir: "."
 navbar:
   title: "Home"
   right:
-    - text: "About"
+    - text: About
       href: about.html
     - text: Research
       href: research.html
@@ -20,7 +20,7 @@ navbar:
         - text: Chronic Pain
           href: chronic_pain.html
     - icon: ai-cv ai-lg
-      href: ./library/Resume_JialiangHua_202305_2.pdf
+      href: ./library/Resume_JialiangHua.pdf
     - icon: fa-envelope fa-lg
       href: mailto:<dwjialiang@gmail.com>
     - icon: fa-github fa-lg

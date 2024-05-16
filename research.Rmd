@@ -21,3 +21,5 @@ In this project, I pioneered research on weights options in Estimated Marginal M
 1. [**Chord Diagrams**](z_chord_diagram.html)
 
 2. [**Linear Regression**](z_linear_regression.html)
+
+3. [**Dyadic Data Analysis**](z_dyadic_analysis.html)

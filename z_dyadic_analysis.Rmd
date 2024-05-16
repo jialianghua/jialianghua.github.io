@@ -1,0 +1,12 @@
+---
+title: "Dyadic Data Analysis"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+https://randilgarcia.github.io/week-dyad-workshop/
+
+
+

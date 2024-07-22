@@ -18,7 +18,11 @@ navbar:
         - text: Mindfulness
           href: mindfulness.html
         - text: Chronic Pain
-          href: chronic_pain.html
+          menu:
+            - text: For Patients
+              href: chronic_pain.html
+            - text: Glossary
+              href: chronic_pain_glossary.html
     - icon: ai-cv ai-lg
       href: ./library/Resume_JialiangHua.pdf
     - icon: fa-envelope fa-lg

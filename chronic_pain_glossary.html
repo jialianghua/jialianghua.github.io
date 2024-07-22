@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Phil de la Haye" />
+
+
+<title>Chronic Pain Glossary</title>
+
+<script src="site_libs/header-attrs-2.26/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="academicons/css/academicons.min.css"/>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Home</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="research.html">Research</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Data Science
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="ds_resources.html">Resources</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Neuroscience
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="neuroscience.html">My Research and Work</a>
+    </li>
+    <li>
+      <a href="mindfulness.html">Mindfulness</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Chronic Pain</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="chronic_pain.html">For Patients</a>
+        </li>
+        <li>
+          <a href="chronic_pain_glossary.html">Glossary</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="./library/Resume_JialiangHua.pdf">
+    <span class="ai ai-cv ai-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="mailto:&lt;dwjialiang@gmail.com&gt;">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/jialianghua/">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="admin.html">
+    <span class="fa fa-solid fa-circle-user fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Chronic Pain Glossary</h1>
+<h4 class="author">Phil de la Haye</h4>
+
+</div>
+
+
+<p>Please note that although I compiled the questions and put this
+document together, all the questions have been answered by Nicole
+herself.</p>
+<hr />
+<div id="glossary" class="section level1">
+<h1>GLOSSARY</h1>
+<p><strong>Chronic Pain</strong></p>
+<p>Chronic pain is defined as pain that persists past usual healing
+time, and is usually considered to apply to pain that persists more than
+3-6 months. Healing implies an injury, and it’s important to note that
+chronic pain can also occur without any triggering injury.</p>
+<p><strong>Other Chronic Conditions</strong></p>
+<p>It’s very important to note that the term “Chronic Pain” in the
+context of Nicole’s work is about so much more than pain symptoms. It
+refers to any symptom or condition that has no cure, but only treatment
+(and often treatment is ineffective). Migraines, body pains of any kind,
+neuralgias, pelvic pain, irritable bowel and gut issues, fibromyalgia,
+unexplained chest pain, numbness, skin disorders, anxiety, depression,
+fatigue, the symptoms of auto immune disease, insomnia, and eating
+disorders. This is not a comprehensive list, but it gives a solid idea
+of what could be considered TMS.</p>
+<p><strong>TMS: Tension Myositis Syndrome, or Tension Myoneural
+Syndrome</strong></p>
+<p>This is the term created by Dr John Sarno (the pioneer of mindbody
+healing for chronic pain) to describe all the variations of chronic pain
+syndromes that he saw during his years of practice. Myositis relates to
+muscle, so he updated it to Myoneural as research showed the involvement
+of learned neural pathways in chronic pain. It is an umbrella term that
+encompasses many chronic conditions that have very real physical
+symptoms, but a psychological cause.</p>
+<p>TMS can be used interchangeably with the following terms:<br />
+Mindbody Syndrome (MBS) Psychophysiologic Disorder (PPD) Stress
+Illness</p>
+<p><strong>JournalSpeak (often shortened to JS in this
+group)</strong></p>
+<p>This is Nicole Sachs’ method of journaling that she created during
+her own recovery from chronic pain. Through JournalSpeak, you are
+encouraged you to explore your deepest, darkest most shameful/scary
+thoughts and tell the truth about them. Imagine you’re writing with the
+voice of a tantruming 5-year-old, but with the vocabulary and
+consciousness of an adult. Rage on the page, cry, let yourself feel the
+feelings you’ve been suppressing.</p>
+<p><strong>The Work</strong></p>
+<p>When people in this group talk about doing the work, they’re
+referring to doing what Nicole recommends in order to heal from chronic
+pain: 20 minutes daily JournalSpeak followed by 10 minutes loving
+kindness meditation. (See the FAQ below for more details.)</p>
+<p><strong>Symptom Imperative</strong></p>
+<p>This is the process where new symptoms often appear as the old or
+original ones subside. So for example someone who’s main issue was back
+pain may find that disappears or reduces significantly after doing this
+work, but then they start to get foot pain, or stomach issues that they
+didn’t have before. The symptom imperative is the brain attempting to
+find a new focus to distract you from your emotions. Please note that
+the symptom imperative is not a bad thing at all - it indicates that the
+brain and nervous system are preparing to release the symptoms as they
+feel more safe to allow the feelings to rise.</p>
+<p><strong>Extinction Burst</strong></p>
+<p>This is used to refer to an intensifying of symptoms that some people
+experience before the symptoms start to reduce.</p>
+<p><strong>Neural Pathway Pain</strong></p>
+<p>All pain is created in the brain, and it can be created even when
+there is no structural cause or injury. Neural pathway pain is pain that
+is felt when neural circuits are activated, which produce real physical
+pain in the absence of any actual tissue damage.</p>
+<p><strong>Somatic Tracking</strong></p>
+<p>Somatic tracking is a technique for overcoming pain, in which you
+observe the sensations in your body with curiosity rather than fear. In
+this way you learn to reinterpret the signals and deactivate the
+fear/pain cycle.</p>
+<p>For more information see: <a
+href="https://podcasts.apple.com/us/podcast/what-is-somatic-tracking-and-how-can-it-help-my-pain/id1503847664?i=1000478323015"
+class="uri">https://podcasts.apple.com/us/podcast/what-is-somatic-tracking-and-how-can-it-help-my-pain/id1503847664?i=1000478323015</a></p>
+<p><strong>Outcome Independence</strong></p>
+<p>This means that you stop defining success by tying it to a specific
+outcome. In relation to recovery from chronic pain, you stop defining
+success by focusing only on your level of pain. Try to cultivate an
+attitude of indifference to your symptoms. For example, if you have
+back/leg/knee pain and go for a walk, try to find things to enjoy about
+the experience regardless of what happens with your pain that day.</p>
+<p>“However this goes, it’s okay for me.” This is a phrase Nicole uses a
+lot and is a good one to remember when you’re trying to cultivate an
+attitude of acceptance/indifference.</p>
+<p>Dan Buglio covers this idea in many of his videos, for example: <a
+href="https://www.youtube.com/watch?v=KdF5pa9xcvI"
+class="uri">https://www.youtube.com/watch?v=KdF5pa9xcvI</a></p>
+<p>And Alan Gordon talks a lot about this on the TMS Wiki: <a
+href="https://www.tmswiki.org/ppd/A_Word_About_Outcome_Independence,_by_Alan_Gordon,_LCSW"
+class="uri">https://www.tmswiki.org/ppd/A_Word_About_Outcome_Independence,_by_Alan_Gordon,_LCSW</a><br />
+<a
+href="https://www.tmswiki.org/ppd/TMS_Recovery_Program#Working_Toward_Outcome_Independence"
+class="uri">https://www.tmswiki.org/ppd/TMS_Recovery_Program#Working_Toward_Outcome_Independence</a></p>
+<p><strong>Inner Child Work</strong></p>
+<p>This is the reparenting we do when we go back and ask the child
+within us to speak, and allow him/her to know we are listening. Nicole
+has many references to this work and how to do it in her podcasts and
+retreats. There is also an Inner Child meditation offered for sale on
+her website: <a
+href="https://www.thecureforchronicpain.com/meditations/inner-child-meditation"
+class="uri">https://www.thecureforchronicpain.com/meditations/inner-child-meditation</a></p>
+<p><strong>Fight or Flight response
+(Fight/Flight/Freeze/Fawn)</strong></p>
+<p>This is the automatic and instinctive response of the body in a
+threatening situation, triggering the urge to fight or run away
+(flight). Researchers have now also identified the freeze/fawn response
+in addition to the more commonly known ones. Freeze describes a response
+to trauma where one dissociates, and fawn describes a survival strategy
+where a person tries to please/appease others.</p>
+<p><strong>Normal Abnormalities</strong></p>
+<p>This refers to Dr. Sarno’s theory that we all have differences in our
+bodies that are normal and not necessarily a problem. Bulging discs do
+not cause pain, spinal abnormalities and many arthritis diagnoses do not
+cause pain, etc. This applies to many findings on films, as thousands
+have become pain free through this work, although their MRIs and X-rays
+remain the same.</p>
+<hr />
+</div>
+<div id="frequently-asked-questions" class="section level1">
+<h1>FREQUENTLY ASKED QUESTIONS</h1>
+<p><strong>How do I do JournalSpeak?</strong></p>
+<p>You can write by hand, or type on a computer, tablet, or phone. If
+you prefer you can even speak out loud or record yourself talking.
+Writing is preferable if you can do it, as it slows down your thoughts
+enough to invite in real breakthroughs. Nicole recommends you
+destroy/delete it afterwards so that you aren’t inhibited while writing.
+If you want to keep a thought to two, jot them down elsewhere and
+destroy the JS. As one of Nicole’s clients says, “It’s like blowing your
+nose. You don’t need to keep it!”</p>
+<p>Nicole’s prescription for healing is to do 20 minutes (minimum – more
+is fine) of JournalSpeak every day, followed by 10 minutes of loving
+kindness meditation to soothe your nervous system afterwards.</p>
+<p><strong>What are the 3 facets of Nicole’s Work?</strong></p>
+<ul>
+<li>Believe</li>
+<li>Do the work</li>
+<li>Practice patience and kindness to yourself</li>
+</ul>
+<p><strong>How do I decide what to journal about?</strong></p>
+<p>The whole journaling process is explained in Nicole’s YouTube Series:
+Healing Yourself Part one: <a
+href="https://www.youtube.com/watch?v=7eHKbhhBxvs&amp;t=27s"
+class="uri">https://www.youtube.com/watch?v=7eHKbhhBxvs&amp;t=27s</a><br />
+Part two: <a
+href="https://www.youtube.com/watch?v=CQYo7dQ_VO0&amp;t=14s"
+class="uri">https://www.youtube.com/watch?v=CQYo7dQ_VO0&amp;t=14s</a><br />
+Part three: <a href="https://www.youtube.com/watch?v=MwVWBuyNuu0"
+class="uri">https://www.youtube.com/watch?v=MwVWBuyNuu0</a><br />
+Part four: <a
+href="https://www.youtube.com/watch?v=Cb8ae_93E5E&amp;t=14s"
+class="uri">https://www.youtube.com/watch?v=Cb8ae_93E5E&amp;t=14s</a></p>
+<p><strong>Is it normal for my symptoms to get worse/change/move around
+when I first start JournalSpeak?</strong></p>
+<p>Yes, yes, and yes. Journalling stirs up difficult emotions that
+you’ve been suppressing for a long time. There is often a physical
+backlash as your nervous system desperately tries to keep you ‘safe’
+from the feelings that are rising. It’s very common for symptoms to get
+worse initially, for new symptoms to appear, or for symptoms to move
+around your body – e.g. from one hip to the other, or from your lower
+back to your upper back. Keep telling yourself that you’re safe, that
+this isn’t a physical problem (it has an emotional genesis, even though
+it is physically very real), and take these things as proof that
+something is shifting, which means it’s working!</p>
+<p><strong>How long will it take me to heal?</strong></p>
+<p>This is what everyone wants to know, but of course there is no
+one-size-fits-all answer. There are a rare few who recover almost
+instantly on discovering the mindbody connection, but they aren’t the
+majority. Even these people must do the deeper work to protect
+themselves from symptom imperatives down the road.</p>
+<p><u>Most people experience a more gradual recovery that can take
+weeks, months or even longer. Also, recovery is rarely a straight line.
+There will be peaks and troughs along the way, so don’t be disheartened
+if you have bad days even when things have started to improve.</u></p>
+<p><strong>What if I relapse?</strong></p>
+<p>As stated above, ups and downs are to be expected during recovery.
+Occasional relapses or symptom flares are a normal part of the process.
+If/when it happens, don’t panic and fuel them with your fear. Try to
+practice acceptance, and patience and kindness to yourself, and keep
+journalling and soothing with meditation.</p>
+<p><strong>What can I do to soothe and calm my nervous
+system?</strong></p>
+<p>Meditation, acceptance, breathing exercises, seeking support on the
+page, knowing you are not alone. Listening to Nicole’s podcasts can be
+very helpful as well.</p>
+<p><strong>Is it normal to experience anxiety and/or depression when
+physical symptoms start to improve?</strong></p>
+<p>Yes, this is just part of the symptom imperative. One man’s back pain
+is another man’s anxiety. Just keep swimming.</p>
+<p><strong>Does it matter if I journal about the same things over and
+over?</strong></p>
+<p>No! This is great. Feel it all until you have the deep peace of being
+okay with it.</p>
+<p><strong>Won’t it make me feel worse if I dwell on negative
+things?</strong></p>
+<p>No. This is one of the biggest misconceptions of TMS work. In fact,
+if you stay the course and allow yourself to be open to the stream of
+life it invites, you will feel freer than ever before.</p>
+<p><strong>Can I still get physical therapy/massages/see a
+chiropractor?</strong></p>
+<p>There are 2 forces in the universe, love and fear. If you do things
+out of desperation to heal (fear) they will make you worse. If you get
+the massage with love to simply connect with your body, then it is good
+for you. Physical therapy and chiropractic are not advised by Dr. Sarno.
+If you are not ready to give them up, just try to practice going out of
+love go gain support instead of “fixing yourself”.</p>
+<p><strong>How do I exercise with pain?</strong></p>
+<p>If you can do it out of love and health, exercising through the pain
+will not hurt you. Don’t push it - do what feels comfortable to you.</p>
+<p><strong>When do I listen to pain and when do I ignore
+it?</strong></p>
+<p>Developing intuition is important in this process. Keep cultivating
+the belief that nothing is wrong with you, and as you are ready just go
+out and live your life.</p>
+<p><strong>How do I explain TMS to my family/partner/friends
+etc?</strong></p>
+<p>Perhaps show them this document or invite them to listen to Nicole’s
+Healing Yourself Series with you. Just remember - this is a program of
+attraction, not promotion. Your people may question whether an emotional
+exercise can cure a physical condition, and that’s their prerogative.
+Allow people to have their feelings, and lead with quiet confidence. As
+you get better, your body becomes your proof - and theirs.</p>
+<hr />
+</div>
+<div id="useful-resources-and-links" class="section level1">
+<h1>USEFUL RESOURCES AND LINKS</h1>
+<p><strong>Nicole’s Resources</strong></p>
+<p>Nicole’s instagram: <a
+href="https://www.instagram.com/nicolesachslcsw/"
+class="uri">https://www.instagram.com/nicolesachslcsw/</a><br />
+Nicole’s Youtube Series, Healing Yourself: <a
+href="https://www.youtube.com/watch?v=7eHKbhhBxvs&amp;t=27s"
+class="uri">https://www.youtube.com/watch?v=7eHKbhhBxvs&amp;t=27s</a><br />
+Nicole’s Podcast:<br />
+<a
+href="https://podcasts.apple.com/us/podcast/the-cure-for-chronic-pain-with-nicole-sachs-lcsw/id1439580309"
+class="uri">https://podcasts.apple.com/us/podcast/the-cure-for-chronic-pain-with-nicole-sachs-lcsw/id1439580309</a><br />
+<a href="https://open.spotify.com/show/04MSKMpWvDE0jSRLMimhzZ"
+class="uri">https://open.spotify.com/show/04MSKMpWvDE0jSRLMimhzZ</a><br />
+Nicole’s Website: www.thecureforchronicpain.com<br />
+Nicole’s book The Meaning of Truth: <a
+href="https://www.amazon.com/dp/B01HGRM75K/"
+class="uri">https://www.amazon.com/dp/B01HGRM75K/</a><br />
+Nicole’s Course: <a href="https://www.thecureforchronicpain.com/course"
+class="uri">https://www.thecureforchronicpain.com/course</a><br />
+Nicole’s Online Retreats: <a
+href="https://www.thecureforchronicpain.com/work-with-nicole"
+class="uri">https://www.thecureforchronicpain.com/work-with-nicole</a></p>
+<p><strong>Other Resources</strong></p>
+<p>Insight Timer for meditations: <a href="https://insighttimer.com"
+class="uri">https://insighttimer.com</a><br />
+The TMS Wiki: <a
+href="https://www.tmswiki.org/w/index.php?page=The_Tension_Myositis_Syndrome_Wiki"
+class="uri">https://www.tmswiki.org/w/index.php?page=The_Tension_Myositis_Syndrome_Wiki</a><br />
+TMS doc/therapist list: <a
+href="https://www.tmswiki.org/ppd/Find_a_TMS_Doctor_or_Therapist"
+class="uri">https://www.tmswiki.org/ppd/Find_a_TMS_Doctor_or_Therapist</a></p>
+<p><strong>Other Recommended Podcasts</strong></p>
+<p>Like Mind Like Body<br />
+The Mind and Fitness Podcast<br />
+Tell Me About Your Pain<br />
+Mindbody Mastery</p>
+<p><strong>Other Recommended Books</strong></p>
+<p>The Mind/Body Prescription by John Sarno<br />
+The Great Pain Deception by Steve Ozanich<br />
+Unlearn Your Pain by Howard Schubiner<br />
+Think Away Your Pain by David Schechter</p>
+<p><strong>Recommended YouTube Channels</strong></p>
+<p>Nicole Sachs: <a
+href="https://www.youtube.com/channel/UC-tz1Du69PhcBkC3-9_Mgmw"
+class="uri">https://www.youtube.com/channel/UC-tz1Du69PhcBkC3-9_Mgmw</a><br />
+Dan Buglio (Pain Free You): <a
+href="https://www.youtube.com/channel/UC_o_MGVac1_ijjIeig37zVQ"
+class="uri">https://www.youtube.com/channel/UC_o_MGVac1_ijjIeig37zVQ</a></p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

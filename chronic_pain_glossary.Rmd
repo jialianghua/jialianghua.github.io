@@ -1,0 +1,188 @@
+---
+title: "Chronic Pain Glossary"
+author: "Phil de la Haye"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+Please note that although I compiled the questions and put this document together, all the questions have been answered by Nicole herself.
+
+******
+
+# GLOSSARY
+
+**Chronic Pain**
+
+Chronic pain is defined as pain that persists past usual healing time, and is usually considered to apply to pain that persists more than 3-6 months. Healing implies an injury, and it’s important to note that chronic pain can also occur without any triggering injury.
+
+**Other Chronic Conditions**
+
+It’s very important to note that the term “Chronic Pain” in the context of Nicole’s work is about so much more than pain symptoms. It refers to any symptom or condition that has no cure, but only treatment (and often treatment is ineffective). Migraines, body pains of any kind, neuralgias, pelvic pain, irritable bowel and gut issues, fibromyalgia, unexplained chest pain, numbness, skin disorders, anxiety, depression, fatigue, the symptoms of auto immune disease, insomnia, and eating disorders. This is not a comprehensive list, but it gives a solid idea of what could be considered TMS.
+
+**TMS: Tension Myositis Syndrome, or Tension Myoneural Syndrome**
+
+This is the term created by Dr John Sarno (the pioneer of mindbody healing for chronic pain) to describe all the variations of chronic pain syndromes that he saw during his years of practice. Myositis relates to muscle, so he updated it to Myoneural as research showed the involvement of learned neural pathways in chronic pain. It is an umbrella term that encompasses many chronic conditions that have very real physical symptoms, but a psychological cause.
+
+TMS can be used interchangeably with the following terms:  
+Mindbody Syndrome (MBS) Psychophysiologic Disorder (PPD) Stress Illness
+
+**JournalSpeak (often shortened to JS in this group)**
+
+This is Nicole Sachs’ method of journaling that she created during her own recovery from chronic pain. Through JournalSpeak, you are encouraged you to explore your deepest, darkest most shameful/scary thoughts and tell the truth about them. Imagine you’re writing with the voice of a tantruming 5-year-old, but with the vocabulary and consciousness of an adult. Rage on the page, cry, let yourself feel the feelings you’ve been suppressing.
+
+**The Work**
+
+When people in this group talk about doing the work, they’re referring to doing what Nicole recommends in order to heal from chronic pain: 20 minutes daily JournalSpeak followed by 10 minutes loving kindness meditation. (See the FAQ below for more details.)
+
+**Symptom Imperative**
+
+This is the process where new symptoms often appear as the old or original ones subside. So for example someone who’s main issue was back pain may find that disappears or reduces significantly after doing this work, but then they start to get foot pain, or stomach issues that they didn’t have before. The symptom imperative is the brain attempting to find a new focus to distract you from your emotions. Please note that the symptom imperative is not a bad thing at all - it indicates that the brain and nervous system are preparing to release the symptoms as they feel more safe to allow the feelings to rise.
+
+**Extinction Burst**
+
+This is used to refer to an intensifying of symptoms that some people experience before the symptoms start to reduce.
+
+**Neural Pathway Pain**
+
+All pain is created in the brain, and it can be created even when there is no structural cause or injury. Neural pathway pain is pain that is felt when neural circuits are activated, which produce real physical pain in the absence of any actual tissue damage.
+
+**Somatic Tracking**
+
+Somatic tracking is a technique for overcoming pain, in which you observe the sensations in your body with curiosity rather than fear. In this way you learn to reinterpret the signals and deactivate the fear/pain cycle.
+
+For more information see: <https://podcasts.apple.com/us/podcast/what-is-somatic-tracking-and-how-can-it-help-my-pain/id1503847664?i=1000478323015>
+
+**Outcome Independence**
+
+This means that you stop defining success by tying it to a specific outcome. In relation to recovery from chronic pain, you stop defining success by focusing only on your level of pain. Try to cultivate an attitude of indifference to your symptoms. For example, if you have back/leg/knee pain and go for a walk, try to find things to enjoy about the experience regardless of what happens with your pain that day.
+
+“However this goes, it’s okay for me.” This is a phrase Nicole uses a lot and is a good one to remember when you’re trying to cultivate an attitude of acceptance/indifference.
+
+Dan Buglio covers this idea in many of his videos, for example: <https://www.youtube.com/watch?v=KdF5pa9xcvI>
+
+And Alan Gordon talks a lot about this on the TMS Wiki: <https://www.tmswiki.org/ppd/A_Word_About_Outcome_Independence,_by_Alan_Gordon,_LCSW>  
+<https://www.tmswiki.org/ppd/TMS_Recovery_Program#Working_Toward_Outcome_Independence>
+
+**Inner Child Work**
+
+This is the reparenting we do when we go back and ask the child within us to speak, and allow him/her to know we are listening. Nicole has many references to this work and how to do it in her podcasts and retreats. There is also an Inner Child meditation offered for sale on her website: <https://www.thecureforchronicpain.com/meditations/inner-child-meditation>
+
+**Fight or Flight response (Fight/Flight/Freeze/Fawn)**
+
+This is the automatic and instinctive response of the body in a threatening situation, triggering the urge to fight or run away (flight). Researchers have now also identified the freeze/fawn response in addition to the more commonly known ones. Freeze describes a response to trauma where one dissociates, and fawn describes a survival strategy where a person tries to please/appease others.
+
+**Normal Abnormalities**
+
+This refers to Dr. Sarno’s theory that we all have differences in our bodies that are normal and not necessarily a problem. Bulging discs do not cause pain, spinal abnormalities and many arthritis diagnoses do not cause pain, etc. This applies to many findings on films, as thousands have become pain free through this work, although their MRIs and X-rays remain the same.
+
+******
+
+# FREQUENTLY ASKED QUESTIONS
+
+**How do I do JournalSpeak?**
+
+You can write by hand, or type on a computer, tablet, or phone. If you prefer you can even speak out loud or record yourself talking. Writing is preferable if you can do it, as it slows down your thoughts enough to invite in real breakthroughs. Nicole recommends you destroy/delete it afterwards so that you aren’t inhibited while writing. If you want to keep a thought to two, jot them down elsewhere and destroy the JS. As one of Nicole’s clients says, “It’s like blowing your nose. You don’t need to keep it!"
+
+Nicole’s prescription for healing is to do 20 minutes (minimum – more is fine) of JournalSpeak every day, followed by 10 minutes of loving kindness meditation to soothe your nervous system afterwards.
+
+**What are the 3 facets of Nicole’s Work?**
+
+-   Believe
+-   Do the work
+-   Practice patience and kindness to yourself
+
+**How do I decide what to journal about?**
+
+The whole journaling process is explained in Nicole’s YouTube Series: Healing Yourself Part one: <https://www.youtube.com/watch?v=7eHKbhhBxvs&t=27s>  
+Part two: <https://www.youtube.com/watch?v=CQYo7dQ_VO0&t=14s>  
+Part three: <https://www.youtube.com/watch?v=MwVWBuyNuu0>  
+Part four: <https://www.youtube.com/watch?v=Cb8ae_93E5E&t=14s>
+
+**Is it normal for my symptoms to get worse/change/move around when I first start JournalSpeak?**
+
+Yes, yes, and yes. Journalling stirs up difficult emotions that you’ve been suppressing for a long time. There is often a physical backlash as your nervous system desperately tries to keep you ‘safe’ from the feelings that are rising. It’s very common for symptoms to get worse initially, for new symptoms to appear, or for symptoms to move around your body – e.g. from one hip to the other, or from your lower back to your upper back. Keep telling yourself that you’re safe, that this isn’t a physical problem (it has an emotional genesis, even though it is physically very real), and take these things as proof that something is shifting, which means it’s working!
+
+**How long will it take me to heal?**
+
+This is what everyone wants to know, but of course there is no one-size-fits-all answer. There are a rare few who recover almost instantly on discovering the mindbody connection, but they aren’t the majority. Even these people must do the deeper work to protect themselves from symptom imperatives down the road.
+
+[Most people experience a more gradual recovery that can take weeks, months or even longer. Also, recovery is rarely a straight line. There will be peaks and troughs along the way, so don’t be disheartened if you have bad days even when things have started to improve.]{.underline}
+
+**What if I relapse?**
+
+As stated above, ups and downs are to be expected during recovery. Occasional relapses or symptom flares are a normal part of the process. If/when it happens, don’t panic and fuel them with your fear. Try to practice acceptance, and patience and kindness to yourself, and keep journalling and soothing with meditation.
+
+**What can I do to soothe and calm my nervous system?**
+
+Meditation, acceptance, breathing exercises, seeking support on the page, knowing you are not alone. Listening to Nicole’s podcasts can be very helpful as well. 
+
+**Is it normal to experience anxiety and/or depression when physical symptoms start to improve?**
+
+Yes, this is just part of the symptom imperative. One man’s back pain is another man’s anxiety. Just keep swimming. 
+
+**Does it matter if I journal about the same things over and over?**
+
+No! This is great. Feel it all until you have the deep peace of being okay with it. 
+
+**Won’t it make me feel worse if I dwell on negative things?**
+
+No. This is one of the biggest misconceptions of TMS work. In fact, if you stay the course and allow yourself to be open to the stream of life it invites, you will feel freer than ever before. 
+
+**Can I still get physical therapy/massages/see a chiropractor?**
+
+There are 2 forces in the universe, love and fear. If you do things out of desperation to heal (fear) they will make you worse. If you get the massage with love to simply connect with your body, then it is good for you. Physical therapy and chiropractic are not advised by Dr. Sarno. If you are not ready to give them up, just try to practice going out of love go gain support instead of “fixing yourself”. 
+
+**How do I exercise with pain?** 
+
+If you can do it out of love and health, exercising through the pain will not hurt you. Don’t push it - do what feels comfortable to you. 
+
+**When do I listen to pain and when do I ignore it?** 
+
+Developing intuition is important in this process. Keep cultivating the belief that nothing is wrong with you, and as you are ready just go out and live your life. 
+
+**How do I explain TMS to my family/partner/friends etc?**
+
+Perhaps show them this document or invite them to listen to Nicole’s Healing Yourself Series with you. Just remember - this is a program of attraction, not promotion. Your people may question whether an emotional exercise can cure a physical condition, and that’s their prerogative. Allow people to have their feelings, and lead with quiet confidence. As you get better, your body becomes your proof - and theirs.
+
+******
+
+# USEFUL RESOURCES AND LINKS 
+
+**Nicole’s Resources**
+
+Nicole’s instagram: <https://www.instagram.com/nicolesachslcsw/>   
+Nicole’s Youtube Series, Healing Yourself: <https://www.youtube.com/watch?v=7eHKbhhBxvs&t=27s>  
+Nicole’s Podcast:  
+<https://podcasts.apple.com/us/podcast/the-cure-for-chronic-pain-with-nicole-sachs-lcsw/id1439580309>   
+<https://open.spotify.com/show/04MSKMpWvDE0jSRLMimhzZ>  
+Nicole’s Website: www.thecureforchronicpain.com  
+Nicole’s book The Meaning of Truth: <https://www.amazon.com/dp/B01HGRM75K/>  
+Nicole’s Course: <https://www.thecureforchronicpain.com/course>  
+Nicole’s Online Retreats: <https://www.thecureforchronicpain.com/work-with-nicole>
+
+**Other Resources** 
+
+Insight Timer for meditations: <https://insighttimer.com>  
+The TMS Wiki: <https://www.tmswiki.org/w/index.php?page=The_Tension_Myositis_Syndrome_Wiki>  
+TMS doc/therapist list: <https://www.tmswiki.org/ppd/Find_a_TMS_Doctor_or_Therapist>
+
+**Other Recommended Podcasts**
+
+Like Mind Like Body  
+The Mind and Fitness Podcast  
+Tell Me About Your Pain  
+Mindbody Mastery
+
+**Other Recommended Books**
+
+The Mind/Body Prescription by John Sarno  
+The Great Pain Deception by Steve Ozanich  
+Unlearn Your Pain by Howard Schubiner  
+Think Away Your Pain by David Schechter
+
+**Recommended YouTube Channels** 
+
+Nicole Sachs: <https://www.youtube.com/channel/UC-tz1Du69PhcBkC3-9_Mgmw>  
+Dan Buglio (Pain Free You): <https://www.youtube.com/channel/UC_o_MGVac1_ijjIeig37zVQ>

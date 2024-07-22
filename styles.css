@@ -1,3 +1,8 @@
+/* Ensure URLs break and wrap properly */
+a {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
 h1 {
   font-size: 30px;
 }

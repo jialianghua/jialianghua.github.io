@@ -525,8 +525,8 @@ variables, but not what I want to show. Below I add a <code>geom</code>
 to define my first scatterplot.</p>
 <pre class="r"><code>ggplot(weather_df, aes(x = tmin, y = tmax)) + 
   geom_point()
-## Warning: Removed 17 rows containing missing values or values
-## outside the scale range (`geom_point()`).</code></pre>
+## Warning: Removed 17 rows containing missing values or values outside
+## the scale range (`geom_point()`).</code></pre>
 <p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-4-1.png" width="90%" /></p>
 <pre class="r"><code># First define the data set, second define the aesthetic mapping, and third define the geometries.</code></pre>
 <p>The code below could be used instead to produce the same figure.
@@ -560,20 +560,20 @@ variables to learn about using additional aesthetic mappings.</p>
 <code>color</code> aesthetic:</p>
 <pre class="r"><code>ggplot(weather_df, aes(x = tmin, y = tmax)) + 
   geom_point(aes(color = name))
-## Warning: Removed 17 rows containing missing values or values
-## outside the scale range (`geom_point()`).</code></pre>
+## Warning: Removed 17 rows containing missing values or values outside
+## the scale range (`geom_point()`).</code></pre>
 <p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-7-1.png" width="90%" /></p>
 <p>Nice! We get colors and have a handly legend. Maybe next I’ll add a
 smooth curve and make the data points a bit transparent.</p>
 <pre class="r"><code>ggplot(weather_df, aes(x = tmin, y = tmax)) + 
   geom_point(aes(color = name), alpha = .5) +
   geom_smooth(se = FALSE)
-## `geom_smooth()` using method = &#39;gam&#39; and formula = &#39;y ~
-## s(x, bs = &quot;cs&quot;)&#39;
+## `geom_smooth()` using method = &#39;gam&#39; and formula = &#39;y ~ s(x,
+## bs = &quot;cs&quot;)&#39;
 ## Warning: Removed 17 rows containing non-finite outside the scale
 ## range (`stat_smooth()`).
-## Warning: Removed 17 rows containing missing values or values
-## outside the scale range (`geom_point()`).</code></pre>
+## Warning: Removed 17 rows containing missing values or values outside
+## the scale range (`geom_point()`).</code></pre>
 <p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-8-1.png" width="90%" /></p>
 <p>Neat! The curve gives a sense of the relationship between variables,
 and the transparency shows where data are overlapping. I can’t help but
@@ -588,12 +588,11 @@ name as well.</p>
   geom_point(alpha = .5) +
   geom_smooth(se = FALSE) + 
   facet_grid(. ~ name)
-## `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y
-## ~ x&#39;
+## `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;
 ## Warning: Removed 17 rows containing non-finite outside the scale
 ## range (`stat_smooth()`).
-## Warning: Removed 17 rows containing missing values or values
-## outside the scale range (`geom_point()`).</code></pre>
+## Warning: Removed 17 rows containing missing values or values outside
+## the scale range (`geom_point()`).</code></pre>
 <p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-9-1.png" width="90%" /></p>
 <p>Awesome! I’ve learned a lot about these data. However, the
 relationship between minimum and maximum temperature is now kinda
@@ -603,12 +602,11 @@ to learn about precipitation, so let’s do that.</p>
   geom_point(aes(size = prcp), alpha = .5) +
   geom_smooth(se = FALSE) + 
   facet_grid(. ~ name)
-## `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y
-## ~ x&#39;
+## `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;
 ## Warning: Removed 17 rows containing non-finite outside the scale
 ## range (`stat_smooth()`).
-## Warning: Removed 19 rows containing missing values or values
-## outside the scale range (`geom_point()`).</code></pre>
+## Warning: Removed 19 rows containing missing values or values outside
+## the scale range (`geom_point()`).</code></pre>
 <p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-10-1.png" width="90%" /></p>
 <p>Way more interesting! You get a whole range of temperatures in
 Central Park (sometimes it’s maybe too hot); it’s more temperate near
@@ -646,8 +644,7 @@ groups. If nothing else, you should be starting to get a sense for why
 you create way more plots for yourself than for others.</p>
 <pre class="r"><code>ggplot(weather_df, aes(x = date, y = tmax, color = name)) + 
   geom_smooth(se = FALSE) 
-## `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y
-## ~ x&#39;
+## `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;
 ## Warning: Removed 17 rows containing non-finite outside the scale
 ## range (`stat_smooth()`).</code></pre>
 <p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-12-1.png" width="90%" /></p>
@@ -743,8 +740,8 @@ like violins</a>.</p>
 ## range (`stat_ydensity()`).
 ## Warning: Removed 17 rows containing non-finite outside the scale
 ## range (`stat_summary()`).
-## Warning: Removed 3 rows containing missing values or values
-## outside the scale range (`geom_segment()`).</code></pre>
+## Warning: Removed 3 rows containing missing values or values outside
+## the scale range (`geom_segment()`).</code></pre>
 <p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-19-1.png" width="90%" /></p>
 <p>Ridge plots were the trendiest plot of 2017, and were a replacement
 for both boxplots and violin plots. They’re implemented in the <a
@@ -829,8 +826,8 @@ document. As an example, the code chunk below has set
 <code>fig.width = 12</code>.</p>
 <pre class="r"><code>ggplot(weather_df, aes(x = tmin, y = tmax)) + 
   geom_point(aes(color = name))
-## Warning: Removed 17 rows containing missing values or values
-## outside the scale range (`geom_point()`).</code></pre>
+## Warning: Removed 17 rows containing missing values or values outside
+## the scale range (`geom_point()`).</code></pre>
 <p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-27-1.png" width="90%" /></p>
 <p>Usually you can get by with setting reasonable defaults, but keep a
 careful eye on figures you intend to show others – everything should be

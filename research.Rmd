@@ -6,6 +6,12 @@ output:
     toc_float: true
 ---
 
+# My Publications
+
+1. 
+
+***
+
 # My Research
 
 1. **Identifying Important Risk Factors for Future Mania in Individuals with Major Depressive Disorder Using Weighted Random Forest Models and the NESARC Dataset**  

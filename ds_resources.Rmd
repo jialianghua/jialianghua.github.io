@@ -20,3 +20,4 @@ output:
 ## R
 
 - [Visualization with `ggplot2`](z_visualization_pt1.html)
+- [Big Data in R with Arrow](z_arrow.html)

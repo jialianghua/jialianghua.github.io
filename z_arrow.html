@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="R for Data Science (2e)" />
+
+
+<title>Arrow</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="academicons/css/academicons.min.css"/>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Home</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="research.html">Research</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Data Science
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="ds_resources.html">Resources</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Neuroscience
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="neuroscience.html">My Research and Work</a>
+    </li>
+    <li>
+      <a href="mindfulness.html">Mindfulness</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Chronic Pain</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="chronic_pain.html">For Patients</a>
+        </li>
+        <li>
+          <a href="chronic_pain_glossary.html">Glossary</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="./library/Resume_JialiangHua.pdf">
+    <span class="ai ai-cv ai-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="mailto:&lt;dwjialiang@gmail.com&gt;">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/jialianghua/">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="admin.html">
+    <span class="fa fa-solid fa-circle-user fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Arrow</h1>
+<h4 class="author">R for Data Science (2e)</h4>
+
+</div>
+
+
+<pre class="r"><code>knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(arrow)
+library(dbplyr, warn.conflicts = FALSE)
+library(duckdb)</code></pre>
+<div id="getting-the-data" class="section level2">
+<h2>Getting the data</h2>
+<p>We begin by getting a dataset worthy of these tools: a dataset of
+item checkouts from Seattle public libraries, available online at <a
+href="data.seattle.gov/Community/Checkouts-by-Title/tmmm-ytt6">data.seattle.gov/Community/Checkouts-by-Title/tmmm-ytt6</a>.
+This dataset contains 41,389,465 rows that tell you how many times each
+book was checked out each month from April 2005 to October 2022.</p>
+<p>The following code will get you a cached copy of the data. The data
+is a 9GB CSV file, so it will take some time to download. I highly
+recommend using <code>curl::multi_download()</code> to get very large
+files as it’s built for exactly this purpose: it gives you a progress
+bar and it can resume the download if its interrupted.</p>
+<pre class="r"><code>dir.create(&quot;data/data_hide&quot;, showWarnings = FALSE)
+
+curl::multi_download(
+  &quot;https://r4ds.s3.us-west-2.amazonaws.com/seattle-library-checkouts.csv&quot;,
+  &quot;data/data_hide/seattle-library-checkouts.csv&quot;,
+  resume = TRUE
+)</code></pre>
+</div>
+<div id="opening-a-dataset" class="section level2">
+<h2>Opening a dataset</h2>
+<p>Let’s start by taking a look at the data. At 9 GB, this file is large
+enough that we probably don’t want to load the whole thing into memory.
+A good rule of thumb is that you usually want at least twice as much
+memory as the size of the data, and many laptops top out at 16 GB. This
+means we want to avoid <code>read_csv()</code> and instead use the
+<code>arrow::open_dataset()</code>:</p>
+<pre class="r"><code>seattle_csv &lt;- open_dataset(
+  sources = &quot;data/data_hide/seattle-library-checkouts.csv&quot;, 
+  col_types = schema(ISBN = string()),
+  format = &quot;csv&quot;
+)</code></pre>
+<p>What happens when this code is run? <code>open_dataset()</code> will
+scan a few thousand rows to figure out the structure of the dataset. The
+ISBN column contains blank values for the first 80,000 rows, so we have
+to specify the column type to help arrow work out the data structure.
+<strong>Once the data has been scanned by <code>open_dataset()</code>,
+it records what it’s found and stops; it will only read further rows as
+you specifically request them. This metadata is what we see if we print
+<code>seattle_csv</code></strong>:</p>
+<pre class="r"><code>seattle_csv</code></pre>
+<pre><code>## FileSystemDataset with 1 csv file
+## 12 columns
+## UsageClass: string
+## CheckoutType: string
+## MaterialType: string
+## CheckoutYear: int64
+## CheckoutMonth: int64
+## Checkouts: int64
+## Title: string
+## ISBN: string
+## Creator: string
+## Subjects: string
+## Publisher: string
+## PublicationYear: string</code></pre>
+<p>The first line in the output tells you that <code>seattle_csv</code>
+is stored locally on-disk as a single CSV file; it will only be loaded
+into memory as needed. The remainder of the output tells you the column
+type that arrow has imputed for each column.</p>
+<p>We can see what’s actually in with <code>glimpse()</code>. This
+reveals that there are ~41 million rows and 12 columns, and shows us a
+few values.</p>
+<pre class="r"><code>seattle_csv |&gt; glimpse()</code></pre>
+<pre><code>## FileSystemDataset with 1 csv file
+## 41,389,465 rows x 12 columns
+## $ UsageClass      &lt;string&gt; &quot;Physical&quot;, &quot;Physical&quot;, &quot;Digital&quot;, &quot;Physical&quot;, &quot;Physi…
+## $ CheckoutType    &lt;string&gt; &quot;Horizon&quot;, &quot;Horizon&quot;, &quot;OverDrive&quot;, &quot;Horizon&quot;, &quot;Horizo…
+## $ MaterialType    &lt;string&gt; &quot;BOOK&quot;, &quot;BOOK&quot;, &quot;EBOOK&quot;, &quot;BOOK&quot;, &quot;SOUNDDISC&quot;, &quot;BOOK&quot;,…
+## $ CheckoutYear     &lt;int64&gt; 2016, 2016, 2016, 2016, 2016, 2016, 2016, 2016, 2016,…
+## $ CheckoutMonth    &lt;int64&gt; 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,…
+## $ Checkouts        &lt;int64&gt; 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 1, 2, 3, 2, 1, 3, 2, 3,…
+## $ Title           &lt;string&gt; &quot;Super rich : a guide to having it all / Russell Simm…
+## $ ISBN            &lt;string&gt; &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;…
+## $ Creator         &lt;string&gt; &quot;Simmons, Russell&quot;, &quot;Barclay, James, 1965-&quot;, &quot;Tim Par…
+## $ Subjects        &lt;string&gt; &quot;Self realization, Conduct of life, Attitude Psycholo…
+## $ Publisher       &lt;string&gt; &quot;Gotham Books,&quot;, &quot;Pyr,&quot;, &quot;Random House, Inc.&quot;, &quot;Dial …
+## $ PublicationYear &lt;string&gt; &quot;c2011.&quot;, &quot;2010.&quot;, &quot;2015&quot;, &quot;2005.&quot;, &quot;c2004.&quot;, &quot;c2005.…</code></pre>
+<p>We can start to use this dataset with dplyr verbs, using
+<code>collect()</code> to force arrow to perform the computation and
+return some data. For example, this code tells us the total number of
+checkouts per year:</p>
+<pre class="r"><code>seattle_csv |&gt; 
+  group_by(CheckoutYear) |&gt; 
+  summarise(Checkouts = sum(Checkouts)) |&gt; 
+  arrange(CheckoutYear) |&gt; 
+  collect()</code></pre>
+<pre><code>## # A tibble: 18 × 2
+##    CheckoutYear Checkouts
+##           &lt;int&gt;     &lt;int&gt;
+##  1         2005   3798685
+##  2         2006   6599318
+##  3         2007   7126627
+##  4         2008   8438486
+##  5         2009   9135167
+##  6         2010   8608966
+##  7         2011   8321732
+##  8         2012   8163046
+##  9         2013   9057096
+## 10         2014   9136081
+## 11         2015   9084179
+## 12         2016   9021051
+## 13         2017   9231648
+## 14         2018   9149176
+## 15         2019   9199083
+## 16         2020   6053717
+## 17         2021   7361031
+## 18         2022   7001989</code></pre>
+<pre class="r"><code># seattle_csv |&gt; 
+#   filter(CheckoutYear == 2016) |&gt;
+#   write_dataset(&quot;data/&quot;)</code></pre>
+<p>Thanks to arrow, <strong>this code will work regardless of how large
+the underlying dataset is</strong>. But it’s currently rather slow: on
+Hadley’s computer, it took ~10s to run. That’s not terrible given how
+much data we have, but we can make it much faster by switching to a
+better format.</p>
+</div>
+<div id="the-parquet-format" class="section level2">
+<h2>The parquet format</h2>
+<p>To make this data easier to work with, let’s switch to the parquet
+file format and split it up into multiple files. The following sections
+will first introduce you to parquet and partitioning, and then apply
+what we learned to the Seattle library data.</p>
+<div id="advantages-of-parquet" class="section level3">
+<h3>Advantages of parquet</h3>
+<p>Like CSV, parquet is used for rectangular data, but instead of being
+a text format that you can read with any file editor, it’s a custom
+binary format designed specifically for the needs of big data. This
+means that:</p>
+<ul>
+<li><p>Parquet files are usually smaller than the equivalent CSV file.
+Parquet relies on efficient encodings to keep file size down, and
+supports file compression. This helps make parquet files fast because
+there’s less data to move from disk to memory.</p></li>
+<li><p>Parquet files have a rich type system. As we talked about in
+Section 7.3, a CSV file does not provide any information about column
+types. For example, a CSV reader has to guess whether
+<code>"08-10-2022"</code> should be parsed as a string or a date. In
+contrast, parquet files store data in a way that records the type along
+with the data.</p></li>
+<li><p>Parquet files are “column-oriented”. This means that they’re
+organized column-by-column, much like R’s data frame. This typically
+leads to better performance for data analysis tasks compared to CSV
+files, which are organized row-by-row.</p></li>
+<li><p>Parquet files are “chunked”, which makes it possible to work on
+different parts of the file at the same time, and, if you’re lucky, to
+skip some chunks altogether.</p></li>
+</ul>
+<p>There’s one primary disadvantage to parquet files: they are no longer
+“human readable”, i.e. if you look at a parquet file using
+<code>readr::read_file()</code>, you’ll just see a bunch of
+gibberish.</p>
+</div>
+<div id="partitioning" class="section level3">
+<h3>Partitioning</h3>
+<p>As datasets get larger and larger, storing all the data in a single
+file gets increasingly painful and it’s often useful to split large
+datasets across many files. When this structuring is done intelligently,
+this strategy can lead to significant improvements in performance
+because many analyses will only require a subset of the files.</p>
+<p>There are no hard and fast rules about how to partition your dataset:
+the results will depend on your data, access patterns, and the systems
+that read the data. You’re likely to need to do some experimentation
+before you find the ideal partitioning for your situation. As a rough
+guide, arrow suggests that you avoid files smaller than 20MB and larger
+than 2GB and avoid partitions that produce more than 10,000 files. You
+should also try to partition by variables that you filter by; as you’ll
+see shortly, that allows arrow to skip a lot of work by reading only the
+relevant files.</p>
+</div>
+<div id="rewriting-the-seattle-library-data" class="section level3">
+<h3>Rewriting the Seattle library data</h3>
+<p>Let’s apply these ideas to the Seattle library data to see how they
+play out in practice. We’re going to partition by
+<code>CheckoutYear</code>, since it’s likely some analyses will only
+want to look at recent data and partitioning by year yields 18 chunks of
+a reasonable size.</p>
+<p>To rewrite the data we define the partition using
+<code>dplyr::group_by()</code> and then save the partitions to a
+directory with <code>arrow::write_dataset()</code>.
+<code>write_dataset()</code> has two important arguments: a directory
+where we’ll create the files and the format we’ll use.</p>
+<pre class="r"><code>pq_path &lt;- &quot;data/data_hide/seattle-library-checkouts&quot;</code></pre>
+<pre class="r"><code>seattle_csv |&gt;
+  group_by(CheckoutYear) |&gt;
+  write_dataset(path = pq_path, format = &quot;parquet&quot;)</code></pre>
+<p>This takes about a minute to run; as we’ll see shortly this is an
+initial investment that pays off by making future operations much much
+faster.</p>
+<p>Let’s take a look at what we just produced:</p>
+<pre class="r"><code>tibble(
+  files = list.files(pq_path, recursive = TRUE),
+  size_MB = file.size(file.path(pq_path, files)) / 1024^2
+)</code></pre>
+<pre><code>## # A tibble: 18 × 2
+##    files                            size_MB
+##    &lt;chr&gt;                              &lt;dbl&gt;
+##  1 CheckoutYear=2005/part-0.parquet    108.
+##  2 CheckoutYear=2006/part-0.parquet    161.
+##  3 CheckoutYear=2007/part-0.parquet    175.
+##  4 CheckoutYear=2008/part-0.parquet    192.
+##  5 CheckoutYear=2009/part-0.parquet    211.
+##  6 CheckoutYear=2010/part-0.parquet    219.
+##  7 CheckoutYear=2011/part-0.parquet    235.
+##  8 CheckoutYear=2012/part-0.parquet    245.
+##  9 CheckoutYear=2013/part-0.parquet    265.
+## 10 CheckoutYear=2014/part-0.parquet    278.
+## 11 CheckoutYear=2015/part-0.parquet    289.
+## 12 CheckoutYear=2016/part-0.parquet    296.
+## 13 CheckoutYear=2017/part-0.parquet    300.
+## 14 CheckoutYear=2018/part-0.parquet    288.
+## 15 CheckoutYear=2019/part-0.parquet    284.
+## 16 CheckoutYear=2020/part-0.parquet    149.
+## 17 CheckoutYear=2021/part-0.parquet    225.
+## 18 CheckoutYear=2022/part-0.parquet    237.</code></pre>
+<p>Our single 9GB CSV file has been rewritten into 18 parquet files. The
+file names use a “self-describing” convention used by the Apache Hive
+project. Hive-style partitions name folders with a “key=value”
+convention, so as you might guess, the <code>CheckoutYear=2005</code>
+directory contains all the data where <code>CheckoutYear</code> is 2005.
+Each file is between 100 and 300 MB and the total size is now around 4
+GB, a little over half the size of the original CSV file. This is as we
+expect since parquet is a much more efficient format.</p>
+</div>
+</div>
+<div id="using-dplyr-with-arrow" class="section level2">
+<h2>Using dplyr with arrow</h2>
+<p>Now we’ve created these parquet files, we’ll need to read them in
+again. We use <code>open_dataset()</code> again, but this time we give
+it a directory:</p>
+<pre class="r"><code>seattle_pq &lt;- open_dataset(pq_path)
+seattle_pq</code></pre>
+<pre><code>## FileSystemDataset with 18 Parquet files
+## 12 columns
+## UsageClass: string
+## CheckoutType: string
+## MaterialType: string
+## CheckoutMonth: int64
+## Checkouts: int64
+## Title: string
+## ISBN: string
+## Creator: string
+## Subjects: string
+## Publisher: string
+## PublicationYear: string
+## CheckoutYear: int32</code></pre>
+<p>Now we can write our dplyr pipeline. For example, we could count the
+total number of books checked out in each month for the last five
+years:</p>
+<pre class="r"><code>query &lt;- seattle_pq |&gt; 
+  filter(CheckoutYear &gt;= 2018, MaterialType == &quot;BOOK&quot;) |&gt;
+  group_by(CheckoutYear, CheckoutMonth) |&gt;
+  summarize(TotalCheckouts = sum(Checkouts)) |&gt;
+  arrange(CheckoutYear, CheckoutMonth)</code></pre>
+<p>Writing dplyr code for arrow data is conceptually similar to dbplyr,
+Chapter 21: you write dplyr code, which is automatically transformed
+into a query that the Apache Arrow C++ library understands, which is
+then executed when you call <code>collect()</code>. If we print out the
+<code>query</code> object we can see a little information about what we
+expect Arrow to return when the execution takes place:</p>
+<pre class="r"><code>query</code></pre>
+<pre><code>## FileSystemDataset (query)
+## CheckoutYear: int32
+## CheckoutMonth: int64
+## TotalCheckouts: int64
+## 
+## * Grouped by CheckoutYear
+## * Sorted by CheckoutYear [asc], CheckoutMonth [asc]
+## See $.data for the source Arrow object</code></pre>
+<p>And we can get the results by calling <code>collect()</code>:</p>
+<pre class="r"><code>query |&gt; collect()</code></pre>
+<pre><code>## # A tibble: 58 × 3
+## # Groups:   CheckoutYear [5]
+##    CheckoutYear CheckoutMonth TotalCheckouts
+##           &lt;int&gt;         &lt;int&gt;          &lt;int&gt;
+##  1         2018             1         355101
+##  2         2018             2         309813
+##  3         2018             3         344487
+##  4         2018             4         330988
+##  5         2018             5         318049
+##  6         2018             6         341825
+##  7         2018             7         351207
+##  8         2018             8         352977
+##  9         2018             9         319587
+## 10         2018            10         338497
+## # ℹ 48 more rows</code></pre>
+<p>Like dbplyr, arrow only understands some R expressions, so you may
+not be able to write exactly the same code you usually would. However,
+the list of operations and functions supported is fairly extensive and
+continues to grow; find a complete list of currently supported functions
+in <a
+href="https://arrow.apache.org/docs/r/reference/acero.html"><code>?acero</code></a>.</p>
+<div id="performance" class="section level3">
+<h3>Performance</h3>
+<p>Let’s take a quick look at the performance impact of switching from
+CSV to parquet. First, let’s time how long it takes to calculate the
+number of books checked out in each month of 2021, when the data is
+stored as a single large csv:</p>
+<pre class="r"><code>seattle_csv |&gt; 
+  filter(CheckoutYear == 2021, MaterialType == &quot;BOOK&quot;) |&gt;
+  group_by(CheckoutMonth) |&gt;
+  summarize(TotalCheckouts = sum(Checkouts)) |&gt;
+  arrange(desc(CheckoutMonth)) |&gt;
+  collect() |&gt; 
+  system.time()
+#&gt;    user  system elapsed 
+#&gt;  10.241   1.090  10.070 </code></pre>
+<p>Now let’s use our new version of the dataset in which the Seattle
+library checkout data has been partitioned into 18 smaller parquet
+files:</p>
+<pre class="r"><code>seattle_pq |&gt; 
+  filter(CheckoutYear == 2021, MaterialType == &quot;BOOK&quot;) |&gt;
+  group_by(CheckoutMonth) |&gt;
+  summarize(TotalCheckouts = sum(Checkouts)) |&gt;
+  arrange(desc(CheckoutMonth)) |&gt;
+  collect() |&gt; 
+  system.time()
+#&gt;    user  system elapsed 
+#&gt;   0.228   0.064   0.059 </code></pre>
+<p>The ~100x speedup in performance is attributable to two factors: the
+multi-file partitioning, and the format of individual files:</p>
+<ul>
+<li><p>Partitioning improves performance because this query uses
+<code>CheckoutYear == 2021</code> to filter the data, and arrow is smart
+enough to recognize that it only needs to read 1 of the 18 parquet
+files.</p></li>
+<li><p>The parquet format improves performance by storing data in a
+binary format that can be read more directly into memory. The
+column-wise format and rich metadata means that arrow only needs to read
+the four columns actually used in the query (<code>CheckoutYear</code>,
+<code>MaterialType</code>, <code>CheckoutMonth</code>, and
+<code>Checkouts</code>).</p></li>
+</ul>
+<p>This massive difference in performance is why it pays off to convert
+large CSVs to parquet!</p>
+</div>
+<div id="using-duckdb-with-arrow" class="section level3">
+<h3>Using duckdb with arrow</h3>
+<p>There’s one last advantage of parquet and arrow — it’s very easy to
+turn an arrow dataset into a DuckDB database (<a
+href="https://r4ds.hadley.nz/databases.html">Chapter 21</a>) by calling
+<code>arrow::to_duckdb()</code>:</p>
+<pre class="r"><code>seattle_pq |&gt; 
+  to_duckdb() |&gt;
+  filter(CheckoutYear &gt;= 2018, MaterialType == &quot;BOOK&quot;) |&gt;
+  group_by(CheckoutYear) |&gt;
+  summarize(TotalCheckouts = sum(Checkouts)) |&gt;
+  arrange(desc(CheckoutYear)) |&gt;
+  collect()
+#&gt; Warning: Missing values are always removed in SQL aggregation functions.
+#&gt; Use `na.rm = TRUE` to silence this warning
+#&gt; This warning is displayed once every 8 hours.
+#&gt; # A tibble: 5 × 2
+#&gt;   CheckoutYear TotalCheckouts
+#&gt;          &lt;int&gt;          &lt;dbl&gt;
+#&gt; 1         2022        2431502
+#&gt; 2         2021        2266438
+#&gt; 3         2020        1241999
+#&gt; 4         2019        3931688
+#&gt; 5         2018        3987569</code></pre>
+<p>The neat thing about <code>to_duckdb()</code> is that the transfer
+doesn’t involve any memory copying, and speaks to the goals of the arrow
+ecosystem: enabling seamless transitions from one computing environment
+to another.</p>
+</div>
+<div id="exercises" class="section level3">
+<h3>Exercises</h3>
+<ol style="list-style-type: decimal">
+<li><p>Figure out the most popular book each year.</p></li>
+<li><p>Which author has the most books in the Seattle library
+system?</p></li>
+<li><p>How has checkouts of books vs ebooks changed over the last 10
+years?</p></li>
+</ol>
+</div>
+</div>
+<div id="summary" class="section level2">
+<h2>Summary</h2>
+<p>In this chapter, you’ve been given a taste of the arrow package,
+which provides a dplyr backend for working with large on-disk datasets.
+It can work with CSV files, and it’s much much faster if you convert
+your data to parquet. Parquet is a binary data format that’s designed
+specifically for data analysis on modern computers. Far fewer tools can
+work with parquet files compared to CSV, but its partitioned,
+compressed, and columnar structure makes it much more efficient to
+analyze.</p>
+<p>Next up you’ll learn about your first non-rectangular data source,
+which you’ll handle using tools provided by the tidyr package. We’ll
+focus on data that comes from JSON files, but the general principles
+apply to tree-like data regardless of its source.</p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

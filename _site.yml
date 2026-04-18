@@ -24,7 +24,7 @@ navbar:
             - text: Glossary
               href: chronic_pain_glossary.html
     - icon: ai-cv ai-lg
-      href: ./library/Resume_JialiangHua.pdf
+      href: ./library/CV_JialiangHua_202604.pdf
     - icon: fa-envelope fa-lg
       href: mailto:<dwjialiang@gmail.com>
     - icon: fa-github fa-lg
@@ -36,4 +36,5 @@ output:
     theme: cosmo
     include:
       in_header: header.html
+      after_body: footer.html
     css: styles.css

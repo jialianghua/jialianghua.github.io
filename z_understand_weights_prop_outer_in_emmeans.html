@@ -14,7 +14,7 @@
 
 <title>Understanding weights options in Estimated Marginal Means (EMMs)</title>
 
-<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -371,7 +371,7 @@ div.tocify {
   </ul>
 </li>
 <li>
-  <a href="./library/Resume_JialiangHua.pdf">
+  <a href="./library/CV_JialiangHua_202604.pdf">
     <span class="ai ai-cv ai-lg"></span>
      
   </a>
@@ -515,8 +515,8 @@ summary(mod_unadjusted)</code></pre>
 ## F-statistic: 11.67 on 1 and 27 DF,  p-value: 0.002026</code></pre>
 <pre class="r"><code>emmeans(mod_unadjusted, &quot;source&quot;, infer = TRUE, null = 0)</code></pre>
 <pre><code>##  source     emmean       SE df lower.CL upper.CL t.ratio p.value
-##  non-skim 34.35000 1.597296 27 31.07262 37.62738  21.505  &lt;.0001
-##  skim     44.14444 2.381109 27 39.25881 49.03008  18.539  &lt;.0001
+##  non-skim 34.35000 1.597296 27 31.07262 37.62738  21.505 &lt;0.0001
+##  skim     44.14444 2.381109 27 39.25881 49.03008  18.539 &lt;0.0001
 ## 
 ## Confidence level used: 0.95</code></pre>
 <div id="calculate-by-ourselves" class="section level3">
@@ -566,56 +566,56 @@ summary(mod_1)</code></pre>
 <pre class="r"><code>EMM_equal &lt;- emmeans(mod_1, &quot;source&quot;, weights = &quot;equal&quot;, infer = TRUE, null = 0)
 EMM_equal</code></pre>
 <pre><code>##  source     emmean        SE df lower.CL upper.CL t.ratio p.value
-##  non-skim 36.26182 0.3183825 22 35.60153 36.92210 113.894  &lt;.0001
-##  skim     40.42513 0.5131306 22 39.36096 41.48929  78.781  &lt;.0001
+##  non-skim 36.26182 0.3183825 22 35.60153 36.92210 113.894 &lt;0.0001
+##  skim     40.42513 0.5131306 22 39.36096 41.48929  78.781 &lt;0.0001
 ## 
 ## Results are averaged over the levels of: percent, dich 
 ## Confidence level used: 0.95</code></pre>
 <pre class="r"><code>contrast(EMM_equal, method = &quot;revpairwise&quot;, infer = TRUE)</code></pre>
 <pre><code>##  contrast          estimate        SE df lower.CL upper.CL t.ratio p.value
-##  skim - (non-skim)  4.16331 0.6249491 22 2.867245 5.459375   6.662  &lt;.0001
+##  skim - (non-skim)  4.16331 0.6249491 22 2.867245 5.459375   6.662 &lt;0.0001
 ## 
 ## Results are averaged over the levels of: percent, dich 
 ## Confidence level used: 0.95</code></pre>
 <pre class="r"><code>EMM_flat &lt;- emmeans(mod_1, &quot;source&quot;, weights = &quot;flat&quot;, infer = TRUE, null = 0)
 EMM_flat</code></pre>
 <pre><code>##  source     emmean        SE df lower.CL upper.CL t.ratio p.value
-##  non-skim 36.26182 0.3183825 22 35.60153 36.92210 113.894  &lt;.0001
-##  skim     40.96905 0.5222716 22 39.88592 42.05218  78.444  &lt;.0001
+##  non-skim 36.26182 0.3183825 22 35.60153 36.92210 113.894 &lt;0.0001
+##  skim     40.96905 0.5222716 22 39.88592 42.05218  78.444 &lt;0.0001
 ## 
 ## Results are averaged over the levels of: percent, dich 
 ## Confidence level used: 0.95</code></pre>
 <pre class="r"><code>contrast(EMM_flat, method = &quot;revpairwise&quot;, infer = TRUE)</code></pre>
 <pre><code>##  contrast          estimate        SE df lower.CL upper.CL t.ratio p.value
-##  skim - (non-skim) 4.707234 0.6176702 22 3.426265 5.988204   7.621  &lt;.0001
+##  skim - (non-skim) 4.707234 0.6176702 22 3.426265 5.988204   7.621 &lt;0.0001
 ## 
 ## Results are averaged over the levels of: percent, dich 
 ## Confidence level used: 0.95</code></pre>
 <pre class="r"><code>EMM_prop &lt;- emmeans(mod_1, &quot;source&quot;, weights = &quot;proportional&quot;, infer = TRUE, null = 0)
 EMM_prop</code></pre>
 <pre><code>##  source     emmean        SE df lower.CL upper.CL t.ratio p.value
-##  non-skim 36.09759 0.3198020 22 35.43436 36.76082 112.875  &lt;.0001
-##  skim     40.26090 0.5004171 22 39.22310 41.29871  80.455  &lt;.0001
+##  non-skim 36.09759 0.3198020 22 35.43436 36.76082 112.875 &lt;0.0001
+##  skim     40.26090 0.5004171 22 39.22310 41.29871  80.455 &lt;0.0001
 ## 
 ## Results are averaged over the levels of: percent, dich 
 ## Confidence level used: 0.95</code></pre>
 <pre class="r"><code>contrast(EMM_prop, method = &quot;revpairwise&quot;, infer = TRUE)</code></pre>
 <pre><code>##  contrast          estimate        SE df lower.CL upper.CL t.ratio p.value
-##  skim - (non-skim)  4.16331 0.6249491 22 2.867245 5.459375   6.662  &lt;.0001
+##  skim - (non-skim)  4.16331 0.6249491 22 2.867245 5.459375   6.662 &lt;0.0001
 ## 
 ## Results are averaged over the levels of: percent, dich 
 ## Confidence level used: 0.95</code></pre>
 <pre class="r"><code>EMM_outer &lt;- emmeans(mod_1, &quot;source&quot;, weights = &quot;outer&quot;, infer = TRUE, null = 0)
 EMM_outer</code></pre>
 <pre><code>##  source     emmean        SE df lower.CL upper.CL t.ratio p.value
-##  non-skim 36.09759 0.3198020 22 35.43436 36.76082 112.875  &lt;.0001
-##  skim     40.26090 0.5004171 22 39.22310 41.29871  80.455  &lt;.0001
+##  non-skim 36.09759 0.3198020 22 35.43436 36.76082 112.875 &lt;0.0001
+##  skim     40.26090 0.5004171 22 39.22310 41.29871  80.455 &lt;0.0001
 ## 
 ## Results are averaged over the levels of: percent, dich 
 ## Confidence level used: 0.95</code></pre>
 <pre class="r"><code>contrast(EMM_outer, method = &quot;revpairwise&quot;, infer = TRUE)</code></pre>
 <pre><code>##  contrast          estimate        SE df lower.CL upper.CL t.ratio p.value
-##  skim - (non-skim)  4.16331 0.6249491 22 2.867245 5.459375   6.662  &lt;.0001
+##  skim - (non-skim)  4.16331 0.6249491 22 2.867245 5.459375   6.662 &lt;0.0001
 ## 
 ## Results are averaged over the levels of: percent, dich 
 ## Confidence level used: 0.95</code></pre>
@@ -913,56 +913,56 @@ summary(mod_2)</code></pre>
 <pre class="r"><code>EMM_equal2 &lt;- emmeans(mod_2, &quot;source&quot;, weights = &quot;equal&quot;, infer = TRUE, null = 0)
 EMM_equal2</code></pre>
 <pre><code>##  source     emmean        SE df lower.CL upper.CL t.ratio p.value
-##  non-skim 36.17009 0.3393370 19 35.45985 36.88033 106.590  &lt;.0001
-##  skim     40.25012 0.5577774 19 39.08268 41.41756  72.162  &lt;.0001
+##  non-skim 36.17009 0.3393370 19 35.45985 36.88033 106.590 &lt;0.0001
+##  skim     40.25012 0.5577774 19 39.08268 41.41756  72.162 &lt;0.0001
 ## 
 ## Results are averaged over the levels of: percent, dich 
 ## Confidence level used: 0.95</code></pre>
 <pre class="r"><code>contrast(EMM_equal2, method = &quot;revpairwise&quot;, infer = TRUE)</code></pre>
 <pre><code>##  contrast          estimate        SE df lower.CL upper.CL t.ratio p.value
-##  skim - (non-skim) 4.080029 0.6518138 19 2.715767 5.444291   6.260  &lt;.0001
+##  skim - (non-skim) 4.080029 0.6518138 19 2.715767 5.444291   6.260 &lt;0.0001
 ## 
 ## Results are averaged over the levels of: percent, dich 
 ## Confidence level used: 0.95</code></pre>
 <pre class="r"><code>EMM_flat2 &lt;- emmeans(mod_2, &quot;source&quot;, weights = &quot;flat&quot;, infer = TRUE, null = 0)
 EMM_flat2</code></pre>
 <pre><code>##  source     emmean        SE df lower.CL upper.CL t.ratio p.value
-##  non-skim 36.17009 0.3393370 19 35.45985 36.88033 106.590  &lt;.0001
-##  skim     40.90720 0.5677474 19 39.71889 42.09551  72.052  &lt;.0001
+##  non-skim 36.17009 0.3393370 19 35.45985 36.88033 106.590 &lt;0.0001
+##  skim     40.90720 0.5677474 19 39.71889 42.09551  72.052 &lt;0.0001
 ## 
 ## Results are averaged over the levels of: percent, dich 
 ## Confidence level used: 0.95</code></pre>
 <pre class="r"><code>contrast(EMM_flat2, method = &quot;revpairwise&quot;, infer = TRUE)</code></pre>
 <pre><code>##  contrast          estimate        SE df lower.CL upper.CL t.ratio p.value
-##  skim - (non-skim) 4.737113 0.6488837 19 3.378984 6.095242   7.300  &lt;.0001
+##  skim - (non-skim) 4.737113 0.6488837 19 3.378984 6.095242   7.300 &lt;0.0001
 ## 
 ## Results are averaged over the levels of: percent, dich 
 ## Confidence level used: 0.95</code></pre>
 <pre class="r"><code>EMM_prop2 &lt;- emmeans(mod_2, &quot;source&quot;, weights = &quot;proportional&quot;, infer = TRUE, null = 0)
 EMM_prop2</code></pre>
 <pre><code>##  source     emmean        SE df lower.CL upper.CL t.ratio p.value
-##  non-skim 36.12344 0.3307670 19 35.43114 36.81574 109.211  &lt;.0001
-##  skim     40.20347 0.5201548 19 39.11477 41.29216  77.291  &lt;.0001
+##  non-skim 36.12344 0.3307670 19 35.43114 36.81574 109.211 &lt;0.0001
+##  skim     40.20347 0.5201548 19 39.11477 41.29216  77.291 &lt;0.0001
 ## 
 ## Results are averaged over the levels of: percent, dich 
 ## Confidence level used: 0.95</code></pre>
 <pre class="r"><code>contrast(EMM_prop2, method = &quot;revpairwise&quot;, infer = TRUE)</code></pre>
 <pre><code>##  contrast          estimate        SE df lower.CL upper.CL t.ratio p.value
-##  skim - (non-skim) 4.080029 0.6518138 19 2.715767 5.444291   6.260  &lt;.0001
+##  skim - (non-skim) 4.080029 0.6518138 19 2.715767 5.444291   6.260 &lt;0.0001
 ## 
 ## Results are averaged over the levels of: percent, dich 
 ## Confidence level used: 0.95</code></pre>
 <pre class="r"><code>EMM_outer2 &lt;- emmeans(mod_2, &quot;source&quot;, weights = &quot;outer&quot;, infer = TRUE, null = 0)
 EMM_outer2</code></pre>
 <pre><code>##  source     emmean        SE df lower.CL upper.CL t.ratio p.value
-##  non-skim 35.99725 0.3409342 19 35.28366 36.71083 105.584  &lt;.0001
-##  skim     40.07728 0.5471006 19 38.93218 41.22237  73.254  &lt;.0001
+##  non-skim 35.99725 0.3409342 19 35.28366 36.71083 105.584 &lt;0.0001
+##  skim     40.07728 0.5471006 19 38.93218 41.22237  73.254 &lt;0.0001
 ## 
 ## Results are averaged over the levels of: percent, dich 
 ## Confidence level used: 0.95</code></pre>
 <pre class="r"><code>contrast(EMM_outer2, method = &quot;revpairwise&quot;, infer = TRUE)</code></pre>
 <pre><code>##  contrast          estimate        SE df lower.CL upper.CL t.ratio p.value
-##  skim - (non-skim) 4.080029 0.6518138 19 2.715767 5.444291   6.260  &lt;.0001
+##  skim - (non-skim) 4.080029 0.6518138 19 2.715767 5.444291   6.260 &lt;0.0001
 ## 
 ## Results are averaged over the levels of: percent, dich 
 ## Confidence level used: 0.95</code></pre>
@@ -1188,42 +1188,42 @@ summary(mod_3)</code></pre>
 <pre class="r"><code>EMM_equal3 &lt;- emmeans(mod_3, &quot;source&quot;, weights = &quot;equal&quot;, infer = TRUE, null = 0)
 EMM_equal3</code></pre>
 <pre><code>##  source     emmean        SE df lower.CL upper.CL t.ratio p.value
-##  non-skim 36.21225 0.3470669 19 35.48583 36.93867 104.338  &lt;.0001
-##  skim     40.23710 0.5982020 19 38.98505 41.48915  67.263  &lt;.0001
+##  non-skim 36.21225 0.3470669 19 35.48583 36.93867 104.338 &lt;0.0001
+##  skim     40.23710 0.5982020 19 38.98505 41.48915  67.263 &lt;0.0001
 ## 
 ## Results are averaged over the levels of: percent, dich 
 ## Confidence level used: 0.95</code></pre>
 <pre class="r"><code>contrast(EMM_equal3, method = &quot;revpairwise&quot;, infer = TRUE)</code></pre>
 <pre><code>##  contrast          estimate        SE df lower.CL upper.CL t.ratio p.value
-##  skim - (non-skim) 4.024848 0.6812953 19  2.59888 5.450815   5.908  &lt;.0001
+##  skim - (non-skim) 4.024848 0.6812953 19  2.59888 5.450815   5.908 &lt;0.0001
 ## 
 ## Results are averaged over the levels of: percent, dich 
 ## Confidence level used: 0.95</code></pre>
 <pre class="r"><code>EMM_prop3 &lt;- emmeans(mod_3, &quot;source&quot;, weights = &quot;proportional&quot;, infer = TRUE, null = 0)
 EMM_prop3</code></pre>
 <pre><code>##  source     emmean        SE df lower.CL upper.CL t.ratio p.value
-##  non-skim 36.04771 0.3507588 19 35.31357 36.78186 102.771  &lt;.0001
-##  skim     40.07256 0.5884491 19 38.84092 41.30420  68.099  &lt;.0001
+##  non-skim 36.04771 0.3507588 19 35.31357 36.78186 102.771 &lt;0.0001
+##  skim     40.07256 0.5884491 19 38.84092 41.30420  68.099 &lt;0.0001
 ## 
 ## Results are averaged over the levels of: percent, dich 
 ## Confidence level used: 0.95</code></pre>
 <pre class="r"><code>contrast(EMM_prop3, method = &quot;revpairwise&quot;, infer = TRUE)</code></pre>
 <pre><code>##  contrast          estimate        SE df lower.CL upper.CL t.ratio p.value
-##  skim - (non-skim) 4.024848 0.6812953 19  2.59888 5.450815   5.908  &lt;.0001
+##  skim - (non-skim) 4.024848 0.6812953 19  2.59888 5.450815   5.908 &lt;0.0001
 ## 
 ## Results are averaged over the levels of: percent, dich 
 ## Confidence level used: 0.95</code></pre>
 <pre class="r"><code>EMM_outer3 &lt;- emmeans(mod_3, &quot;source&quot;, weights = &quot;outer&quot;, infer = TRUE, null = 0)
 EMM_outer3</code></pre>
 <pre><code>##  source     emmean        SE df lower.CL upper.CL t.ratio p.value
-##  non-skim 36.04771 0.3507588 19 35.31357 36.78186 102.771  &lt;.0001
-##  skim     40.07256 0.5884491 19 38.84092 41.30420  68.099  &lt;.0001
+##  non-skim 36.04771 0.3507588 19 35.31357 36.78186 102.771 &lt;0.0001
+##  skim     40.07256 0.5884491 19 38.84092 41.30420  68.099 &lt;0.0001
 ## 
 ## Results are averaged over the levels of: percent, dich 
 ## Confidence level used: 0.95</code></pre>
 <pre class="r"><code>contrast(EMM_outer3, method = &quot;revpairwise&quot;, infer = TRUE)</code></pre>
 <pre><code>##  contrast          estimate        SE df lower.CL upper.CL t.ratio p.value
-##  skim - (non-skim) 4.024848 0.6812953 19  2.59888 5.450815   5.908  &lt;.0001
+##  skim - (non-skim) 4.024848 0.6812953 19  2.59888 5.450815   5.908 &lt;0.0001
 ## 
 ## Results are averaged over the levels of: percent, dich 
 ## Confidence level used: 0.95</code></pre>
@@ -1376,6 +1376,10 @@ outerwt_skim %*% pred</code></pre>
 </div>
 </div>
 
+<br><br>
+<footer>
+    <p class="copyright text-muted" align="center">Copyright &copy; 2026 Jialiang Hua</p>
+</footer>
 
 
 </div>

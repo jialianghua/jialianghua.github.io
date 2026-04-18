@@ -13,7 +13,7 @@
 
 <title>Visualization with ggplot2</title>
 
-<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -370,7 +370,7 @@ div.tocify {
   </ul>
 </li>
 <li>
-  <a href="./library/Resume_JialiangHua.pdf">
+  <a href="./library/CV_JialiangHua_202604.pdf">
     <span class="ai ai-cv ai-lg"></span>
      
   </a>
@@ -517,7 +517,7 @@ straight into defining aesthetic mappings. To create a basic
 scatterplot, we need to map variables to the X and Y coordinate
 aesthetics:</p>
 <pre class="r"><code>ggplot(weather_df, aes(x = tmin, y = tmax))</code></pre>
-<p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-3-1.png" width="90%" /></p>
+<p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-3-1.png" alt="" width="90%" /></p>
 <p>Well, my “scatterplot” is blank. That’s because I’ve defined the data
 and the aesthetic mappings, but haven’t added any geoms:
 <code>ggplot</code> knows what data I want to plot and how I want to map
@@ -525,9 +525,11 @@ variables, but not what I want to show. Below I add a <code>geom</code>
 to define my first scatterplot.</p>
 <pre class="r"><code>ggplot(weather_df, aes(x = tmin, y = tmax)) + 
   geom_point()
-## Warning: Removed 17 rows containing missing values or values outside the
-## scale range (`geom_point()`).</code></pre>
-<p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-4-1.png" width="90%" /></p>
+## Warning: Removed 17 rows containing
+## missing values or values
+## outside the scale range
+## (`geom_point()`).</code></pre>
+<p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-4-1.png" alt="" width="90%" /></p>
 <pre class="r"><code># First define the data set, second define the aesthetic mapping, and third define the geometries.</code></pre>
 <p>The code below could be used instead to produce the same figure.
 Using this style can be helpful if you want to do some pre-processing
@@ -560,21 +562,27 @@ variables to learn about using additional aesthetic mappings.</p>
 <code>color</code> aesthetic:</p>
 <pre class="r"><code>ggplot(weather_df, aes(x = tmin, y = tmax)) + 
   geom_point(aes(color = name))
-## Warning: Removed 17 rows containing missing values or values outside the
-## scale range (`geom_point()`).</code></pre>
-<p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-7-1.png" width="90%" /></p>
+## Warning: Removed 17 rows containing
+## missing values or values
+## outside the scale range
+## (`geom_point()`).</code></pre>
+<p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-7-1.png" alt="" width="90%" /></p>
 <p>Nice! We get colors and have a handly legend. Maybe next I’ll add a
 smooth curve and make the data points a bit transparent.</p>
 <pre class="r"><code>ggplot(weather_df, aes(x = tmin, y = tmax)) + 
   geom_point(aes(color = name), alpha = .5) +
   geom_smooth(se = FALSE)
-## `geom_smooth()` using method = &#39;gam&#39; and formula = &#39;y ~ s(x, bs
-## = &quot;cs&quot;)&#39;
-## Warning: Removed 17 rows containing non-finite outside the scale range
-## (`stat_smooth()`).
-## Warning: Removed 17 rows containing missing values or values outside the
-## scale range (`geom_point()`).</code></pre>
-<p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-8-1.png" width="90%" /></p>
+## `geom_smooth()` using method
+## = &#39;gam&#39; and formula = &#39;y ~
+## s(x, bs = &quot;cs&quot;)&#39;
+## Warning: Removed 17 rows containing
+## non-finite outside the scale
+## range (`stat_smooth()`).
+## Warning: Removed 17 rows containing
+## missing values or values
+## outside the scale range
+## (`geom_point()`).</code></pre>
+<p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-8-1.png" alt="" width="90%" /></p>
 <p>Neat! The curve gives a sense of the relationship between variables,
 and the transparency shows where data are overlapping. I can’t help but
 notice, though, that the smooth curve is for all the data but the colors
@@ -588,12 +596,17 @@ name as well.</p>
   geom_point(alpha = .5) +
   geom_smooth(se = FALSE) + 
   facet_grid(. ~ name)
-## `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;
-## Warning: Removed 17 rows containing non-finite outside the scale range
-## (`stat_smooth()`).
-## Warning: Removed 17 rows containing missing values or values outside the
-## scale range (`geom_point()`).</code></pre>
-<p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-9-1.png" width="90%" /></p>
+## `geom_smooth()` using method
+## = &#39;loess&#39; and formula = &#39;y ~
+## x&#39;
+## Warning: Removed 17 rows containing
+## non-finite outside the scale
+## range (`stat_smooth()`).
+## Warning: Removed 17 rows containing
+## missing values or values
+## outside the scale range
+## (`geom_point()`).</code></pre>
+<p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-9-1.png" alt="" width="90%" /></p>
 <p>Awesome! I’ve learned a lot about these data. However, the
 relationship between minimum and maximum temperature is now kinda
 boring, so I’d prefer something that shows the time of year. Also I want
@@ -602,12 +615,17 @@ to learn about precipitation, so let’s do that.</p>
   geom_point(aes(size = prcp), alpha = .5) +
   geom_smooth(se = FALSE) + 
   facet_grid(. ~ name)
-## `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;
-## Warning: Removed 17 rows containing non-finite outside the scale range
-## (`stat_smooth()`).
-## Warning: Removed 19 rows containing missing values or values outside the
-## scale range (`geom_point()`).</code></pre>
-<p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-10-1.png" width="90%" /></p>
+## `geom_smooth()` using method
+## = &#39;loess&#39; and formula = &#39;y ~
+## x&#39;
+## Warning: Removed 17 rows containing
+## non-finite outside the scale
+## range (`stat_smooth()`).
+## Warning: Removed 19 rows containing
+## missing values or values
+## outside the scale range
+## (`geom_point()`).</code></pre>
+<p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-10-1.png" alt="" width="90%" /></p>
 <p>Way more interesting! You get a whole range of temperatures in
 Central Park (sometimes it’s maybe too hot); it’s more temperate near
 Seattle but it rains <em>all the time</em>; and Molokai is great except
@@ -644,10 +662,13 @@ groups. If nothing else, you should be starting to get a sense for why
 you create way more plots for yourself than for others.</p>
 <pre class="r"><code>ggplot(weather_df, aes(x = date, y = tmax, color = name)) + 
   geom_smooth(se = FALSE) 
-## `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;
-## Warning: Removed 17 rows containing non-finite outside the scale range
-## (`stat_smooth()`).</code></pre>
-<p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-12-1.png" width="90%" /></p>
+## `geom_smooth()` using method
+## = &#39;loess&#39; and formula = &#39;y ~
+## x&#39;
+## Warning: Removed 17 rows containing
+## non-finite outside the scale
+## range (`stat_smooth()`).</code></pre>
+<p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-12-1.png" alt="" width="90%" /></p>
 <p>When you’re making a scatterplot with lots of data, there’s a limit
 to how much you can avoid overplotting using alpha levels and
 transparency. In these cases <code>geom_hex()</code>,
@@ -655,9 +676,10 @@ transparency. In these cases <code>geom_hex()</code>,
 handy:</p>
 <pre class="r"><code>ggplot(weather_df, aes(x = tmax, y = tmin)) + 
   geom_hex()
-## Warning: Removed 17 rows containing non-finite outside the scale range
-## (`stat_binhex()`).</code></pre>
-<p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-13-1.png" width="90%" /></p>
+## Warning: Removed 17 rows containing
+## non-finite outside the scale
+## range (`stat_binhex()`).</code></pre>
+<p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-13-1.png" alt="" width="90%" /></p>
 <p>There are lots of aesthetics, and these depend to some extent on the
 geom – <code>color</code> worked for both <code>geom_point()</code> and
 <code>geom_smooth()</code>, but <code>shape</code> only applies to
@@ -690,26 +712,30 @@ necessary, some new aesthetics.</p>
 <p>First up is the histogram.</p>
 <pre class="r"><code>ggplot(weather_df, aes(x = tmax)) + 
   geom_histogram()
-## `stat_bin()` using `bins = 30`. Pick better value with
+## `stat_bin()` using `bins =
+## 30`. Pick better value
 ## `binwidth`.
-## Warning: Removed 17 rows containing non-finite outside the scale range
-## (`stat_bin()`).</code></pre>
-<p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-15-1.png" width="90%" /></p>
+## Warning: Removed 17 rows containing
+## non-finite outside the scale
+## range (`stat_bin()`).</code></pre>
+<p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-15-1.png" alt="" width="90%" /></p>
 <p>You can play around with things like the bin width and set the fill
 color using an aesthetic mapping.</p>
 <pre class="r"><code>ggplot(weather_df, aes(x = tmax, fill = name)) + 
   geom_histogram(position = &quot;dodge&quot;, binwidth = 2)
-## Warning: Removed 17 rows containing non-finite outside the scale range
-## (`stat_bin()`).</code></pre>
-<p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-16-1.png" width="90%" /></p>
+## Warning: Removed 17 rows containing
+## non-finite outside the scale
+## range (`stat_bin()`).</code></pre>
+<p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-16-1.png" alt="" width="90%" /></p>
 <p>The <code>position = "dodge"</code> places the bars for each group
 side-by-side, but this gets sort of hard to understand. I often prefer
 density plots in place of histograms.</p>
 <pre class="r"><code>ggplot(weather_df, aes(x = tmax, fill = name)) + 
   geom_density(alpha = .4, adjust = .5, color = &quot;blue&quot;)
-## Warning: Removed 17 rows containing non-finite outside the scale range
-## (`stat_density()`).</code></pre>
-<p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-17-1.png" width="90%" /></p>
+## Warning: Removed 17 rows containing
+## non-finite outside the scale
+## range (`stat_density()`).</code></pre>
+<p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-17-1.png" alt="" width="90%" /></p>
 <p>The <code>adjust</code> parameter in density plots is similar to the
 <code>binwidth</code> parameter in histograms, and it helps to try a few
 values. I set the transparency level to .4 to make sure all densities
@@ -722,9 +748,10 @@ the density.</p>
 <p>Histograms and densities are one way of investigating univariate
 distributions; boxplots are another.</p>
 <pre class="r"><code>ggplot(weather_df, aes(x = name, y = tmax)) + geom_boxplot()
-## Warning: Removed 17 rows containing non-finite outside the scale range
-## (`stat_boxplot()`).</code></pre>
-<p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-18-1.png" width="90%" /></p>
+## Warning: Removed 17 rows containing
+## non-finite outside the scale
+## range (`stat_boxplot()`).</code></pre>
+<p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-18-1.png" alt="" width="90%" /></p>
 <p>Violin plots are sometimes nice, but folks complain that they don’t
 <a
 href="https://simplystatistics.org/2017/07/13/the-joy-of-no-more-violin-plots/">look
@@ -732,13 +759,17 @@ like violins</a>.</p>
 <pre class="r"><code>ggplot(weather_df, aes(x = name, y = tmax)) + 
   geom_violin(aes(fill = name), alpha = .5) + 
   stat_summary(fun = &quot;median&quot;, color = &quot;blue&quot;)
-## Warning: Removed 17 rows containing non-finite outside the scale range
-## (`stat_ydensity()`).
-## Warning: Removed 17 rows containing non-finite outside the scale range
-## (`stat_summary()`).
-## Warning: Removed 3 rows containing missing values or values outside the
-## scale range (`geom_segment()`).</code></pre>
-<p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-19-1.png" width="90%" /></p>
+## Warning: Removed 17 rows containing
+## non-finite outside the scale
+## range (`stat_ydensity()`).
+## Warning: Removed 17 rows containing
+## non-finite outside the scale
+## range (`stat_summary()`).
+## Warning: Removed 3 rows containing
+## missing values or values
+## outside the scale range
+## (`geom_segment()`).</code></pre>
+<p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-19-1.png" alt="" width="90%" /></p>
 <p>Ridge plots were the trendiest plot of 2017, and were a replacement
 for both boxplots and violin plots. They’re implemented in the <a
 href="https://github.com/clauswilke/ggridges"><code>ggridges</code></a>
@@ -747,9 +778,11 @@ of the distribution matters.</p>
 <pre class="r"><code>ggplot(weather_df, aes(x = tmax, y = name)) + 
   geom_density_ridges(scale = .85)
 ## Picking joint bandwidth of 1.54
-## Warning: Removed 17 rows containing non-finite outside the scale range
+## Warning: Removed 17 rows containing
+## non-finite outside the scale
+## range
 ## (`stat_density_ridges()`).</code></pre>
-<p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-20-1.png" width="90%" /></p>
+<p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-20-1.png" alt="" width="90%" /></p>
 <p><strong><em>Learning Assessment:</em></strong> Make plots that
 compare precipitation across locations. Try a histogram, a density plot,
 a boxplot, a violin plot, and a ridgeplot; use aesthetic mappings to
@@ -822,9 +855,11 @@ document. As an example, the code chunk below has set
 <code>fig.width = 12</code>.</p>
 <pre class="r"><code>ggplot(weather_df, aes(x = tmin, y = tmax)) + 
   geom_point(aes(color = name))
-## Warning: Removed 17 rows containing missing values or values outside the
-## scale range (`geom_point()`).</code></pre>
-<p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-27-1.png" width="90%" /></p>
+## Warning: Removed 17 rows containing
+## missing values or values
+## outside the scale range
+## (`geom_point()`).</code></pre>
+<p><img src="z_visualization_pt1_files/figure-html/unnamed-chunk-27-1.png" alt="" width="90%" /></p>
 <p>Usually you can get by with setting reasonable defaults, but keep a
 careful eye on figures you intend to show others – everything should be
 legible!</p>
@@ -892,6 +927,10 @@ use ggplot2</a></li>
 href="https://github.com/P8105/viz_and_eda">here</a>.</p>
 </div>
 
+<br><br>
+<footer>
+    <p class="copyright text-muted" align="center">Copyright &copy; 2026 Jialiang Hua</p>
+</footer>
 
 
 </div>

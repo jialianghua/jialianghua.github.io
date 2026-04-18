@@ -6,13 +6,33 @@ output:
     toc_float: true
 ---
 
-# My Publications
+For a full list of publications, please see my [Google Scholar](https://scholar.google.com/citations?user=ohXtYiAAAAAJ&hl=en) page.
 
-1. 
+<br>
 
-***
+# Publications
 
-# My Research
+## Peer-Reviewed Publications
+
+1. Samples H, Cook S, **Hua J**, Treitler P, Stone EM, Miles J, Olfson M, Crystal S. Timely Receipt of New Medication Treatment After Acute Care Encounters for Opioid Overdose in the U.S. Medicaid Population. J Gen Intern Med. 2026. doi:10.1007/s11606-025-10108-5
+
+2. Olfson M, Xie F, Bushnell G, **Hua J**, Miles J, Crystal S. Antipsychotic Medication Use by Older Adults. JAMA Psychiatry. 2026;83(2):214–216. doi:10.1001/jamapsychiatry.2025.3658
+
+3. Girgis RR, de la Fuente-Sandoval C, Lewis-Fernández R, Reyes-Madrigal F, Wall MM, **Hua J**, Mao X, Malacara M, Kegeles LS, Shungu DC. Concerted Elevations of Cortical and Striatal Glutamate and GABA in Antipsychotic-Free Individuals at Clinical High-Risk for Psychosis. Neuropsychopharmacology. 2025;50(13):2063–2071. doi:10.1038/s41386-025-02251-8
+
+4. Hung LY, Alves ND, Del Colle A, Talati A, Najjar SA, Bouchard V, Gillet V, Tong Y, Huang Z, Browning KN, **Hua J**, Liu Y, Woodruff JO, Juarez D, Medina M, Posner J, Tonello R, Yalcinkaya N, Israelyan N, Ringel R, Yang L, Leong KW, Yang M, Sze JY, Savidge T, Gingrich J, Shulman RJ, Gershon MD, Ouellet A, Takser L, Ansorge MS, Margolis KG. Intestinal Epithelial Serotonin as a Novel Target for Treating Disorders of Gut-Brain Interaction and Mood. Gastroenterology. 2025;168(4):754-768. doi:10.1053/j.gastro.2024.11.012
+
+## Manuscripts Under Review
+
+1. Williams AR, **Hua J**, Olfson M, Samples H, Crystal S. Uptake of Long-Acting Injectable Buprenorphine has been Rapid but Uneven across States, Prescribers, and Payers. Health Aff. Under review. 
+
+2. Lindenfeld Z, Barnett ML, **Hua J**, Crystal S. Increased Buprenorphine Prescribing Following Implementation of a Low-Barrier Virtual Prescriber Network. J Subst Use Addict Treat. Under review.
+
+3. Olfson M, Xie F, Bushnell G, Cruz N, **Hua J**, Miles J, Crystal S. Benzodiazepine Prescriptions to Older Adults in the United States, 2015-2024. Ann Intern Med. Under review.
+
+<br>
+
+# Research Projects
 
 1. **Identifying Important Risk Factors for Future Mania in Individuals with Major Depressive Disorder Using Weighted Random Forest Models and the NESARC Dataset**  
 This is the capstone project for my master's degree. *Here you can find my [presentation slides](library/practicum project/mwPracticum_JialiangHua_final2.pptx) and the [report](library/practicum project/Practicum Report_JialiangHua.pdf).*
@@ -20,9 +40,9 @@ This is the capstone project for my master's degree. *Here you can find my [pres
 2. [**Understanding weights options "proportional" and "outer" in EMMeans**](z_understand_weights_prop_outer_in_emmeans.html)  
 In this project, I pioneered research on weights options in Estimated Marginal Means (EMMs), clarifying application practices through empirical testing and mathematical analysis. Additionally, I collaborated with my colleagues at Mental Health Data Science, Columbia University Department of Psychiatry and New York State Psychiatric Institute to test and understand the “type” and “regrid” options in EMMs, and figured out the calculation methods of EMMs from models with link function for `emmeans` function in R, `Genmod lsmeans` and `%margins` macro in SAS. *Here you can find the [presentation slides](library/Adjusted means sharpen-the-axe Dec 6 2023.pptx) and my [code packet](z_understand_weights_prop_outer_in_emmeans.html#mypacket).*
 
-***
+<br>
 
-# My blog articles
+# Blog Articles
 
 1. [**Chord Diagrams**](z_chord_diagram.html)
 
